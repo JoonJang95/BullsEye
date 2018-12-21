@@ -1,11 +1,10 @@
-var webpack = require('webpack');
-var path = require('path');
+const path = require('path');
 
 module.exports = {
   entry: './client/index.js',
   output: {
     filename: 'app.bundle.js',
-    path: path.resolve(__dirname, './public')
+    path: path.resolve(__dirname, './public'),
   },
   module: {
     rules: [
@@ -15,10 +14,10 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
-        }
-      }
-    ]
-  }
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
+      },
+    ],
+  },
 };
