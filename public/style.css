@@ -1,0 +1,14 @@
+#wrapper {
+  border-top-style: solid;
+  border-bottom-style: solid;
+  background-color: cornflowerblue;
+}
+
+#recommend {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+span {
+  border-style: solid;
+}

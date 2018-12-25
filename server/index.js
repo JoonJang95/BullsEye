@@ -8,16 +8,17 @@ const db = require('../db/index.js');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static('../public'));
+app.use(express.static(`${__dirname}/../public`));
 
 // Request Handling
 
-app.get('/api/item/:id', (req, res) => {
-  let id = req.params.id;
+app.get('/api/item/', (req, res) => {
   db.Products.findAll({
     where: {
-      id: id
-    }
+      id: 1,
+    },
+  }).then((results) => {
+    res.json(results);
   });
 });
 
