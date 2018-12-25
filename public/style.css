@@ -1,12 +1,30 @@
 #wrapper {
   border-top-style: solid;
+  border-top-width: thin;
+  border-top-color: #aaa7a7;
   border-bottom-style: solid;
-  background-color: cornflowerblue;
+  border-top-width: thin;
+  border-top-color: #aaa7a7;
+  display: grid;
+  place-items: center;
+  width: 65%;
+  margin: auto;
 }
 
 #recommend {
+  background-color: cornflowerblue;
   overflow: auto;
   white-space: nowrap;
+}
+
+#accessoryList {
+  display: flex;
+  list-style-type: none;
+}
+
+#accessoryHead {
+  background-color: cornflowerblue;
+  text-align: center;
 }
 
 span {
