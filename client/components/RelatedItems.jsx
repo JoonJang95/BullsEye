@@ -7,24 +7,7 @@ class RelatedItems extends React.Component {
 
   render() {
     return (
-      <div id="recommend">
-        <span>testing</span>
-        <span>testing</span>
-        <span>testing</span>
-        <span>testing</span>
-        <span>testing</span>
-        <span>testing</span>
-        <span>testing</span>
-        <span>testing</span>
-        <span>testing</span>
-        <span>testing</span>
-        <span>testing</span>
-        <span>testing</span>
-        <span>testing</span>
-        <span>testing</span>
-        <span>testing</span>
-        <span>testing</span>
-        <span>testing</span>
+      <div id="recommendations">
         <span>testing</span>
         <span>testing</span>
         <span>testing</span>

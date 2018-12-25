@@ -8,8 +8,7 @@ class Accessories extends React.Component {
   render() {
     return (
       <div id="accessories">
-        <div>
-          <div id="accessoryHead"> Consider these accessories </div>
+        <div class="accessoriesPictures">
           <ul id="accessoryList">
             <li>
               <div>
@@ -23,17 +22,17 @@ class Accessories extends React.Component {
             </li>
             <li>
               <div>
-                <img src="" />
+                <img src="https://target.scene7.com/is/image/Target/52106337?wid=250&hei=250&qlt=80&fmt=webp" />
               </div>
             </li>
             <li>
               <div>
-                <img src="" />
+                <img src="https://target.scene7.com/is/image/Target/51530146?wid=250&hei=250&qlt=80&fmt=webp" />
               </div>
             </li>
             <li>
               <div>
-                <img src="" />
+                <img src="https://target.scene7.com/is/image/Target/51677595?wid=250&hei=250&qlt=80&fmt=webp" />
               </div>
             </li>
           </ul>

@@ -10,8 +10,23 @@ class App extends React.Component {
   render() {
     return (
       <div id="wrapper">
-        <Accessories />
-        <RelatedItems />
+        <div class="accessories">
+          <div class="accessoryHead">
+            {' '}
+            <b>Consider these accessories</b>{' '}
+          </div>
+          <Accessories />
+        </div>
+        <div class="relatedItems">
+          <div class="relatedItemsHead">
+            <b>Recommended</b>
+          </div>
+          <div id="options">
+            <span class="choice">Other recommendations</span>
+            <span class="choice">Recently viewed items</span>
+          </div>
+          <RelatedItems />
+        </div>
       </div>
     );
   }
