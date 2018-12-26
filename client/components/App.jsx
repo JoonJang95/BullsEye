@@ -13,13 +13,13 @@ class App extends React.Component {
         <div class="accessories">
           <div class="accessoryHead">
             {' '}
-            <b>Consider these accessories</b>{' '}
+            <b class="bigHeader accessoryh1">Consider these accessories</b>{' '}
           </div>
           <Accessories />
         </div>
         <div class="relatedItems">
           <div class="relatedItemsHead">
-            <b>Recommended</b>
+            <b class="bigHeader">Recommended</b>
           </div>
           <div id="options">
             <span class="choice">Other recommendations</span>

@@ -6,16 +6,21 @@
   border-bottom-width: thin;
   border-bottom-color: #dddddd;
   display: grid;
-  grid-template-rows: 275px 265px;
+  grid-template-rows: 245px 265px;
+  width: 70%;
+  margin: 0px auto;
 }
 
 .accessoryHead {
   text-align: center;
+  margin-top: 25px;
+  margin-bottom: 15px;
 }
 
 .relatedItemsHead {
   text-align: center;
-  margin-bottom: 6.5px;
+  margin-top: 0px;
+  margin-bottom: 13px;
 }
 
 #options {
@@ -23,8 +28,9 @@
 }
 
 .choice {
+  font-family: Helvetica;
   margin-right: 17px;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .choice:hover {
@@ -37,33 +43,39 @@
   border-top-color: #858181;
   border-top-style: solid;
   border-top-width: thin;
-  margin-top: 7px;
+  margin-top: 5px;
 }
 
 #accessoryList {
-  display: flex;
   list-style-type: none;
 }
 
 img {
-  height: 150px;
-  margin-right: 10px;
+  height: 130px;
 }
 
 ul {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 li {
   list-style: none;
-  display: inline-block;
+  display: inline-flex;
   text-align: center;
+  margin-right: 7px;
 }
 
-b {
+b,
+.productName {
+  font-family: Helvetica;
+  font-size: 10.5px;
+}
+
+.bigHeader {
   font-style: normal;
+  font-family: Helvetica;
   letter-spacing: 0px;
   text-indent: 0px;
   text-shadow: none;
