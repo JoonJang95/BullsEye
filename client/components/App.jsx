@@ -13,7 +13,7 @@ class App extends React.Component {
         <div class="accessories">
           <div class="accessoryHead">
             {' '}
-            <b class="bigHeader accessoryh1">Consider these accessories</b>{' '}
+            <b class="bigHeader">Consider these accessories</b>{' '}
           </div>
           <Accessories />
         </div>
@@ -21,7 +21,7 @@ class App extends React.Component {
           <div class="relatedItemsHead">
             <b class="bigHeader">Recommended</b>
           </div>
-          <div id="options">
+          <div id="recViewOptions">
             <span class="choice">Other recommendations</span>
             <span class="choice">Recently viewed items</span>
           </div>

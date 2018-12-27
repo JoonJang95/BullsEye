@@ -2,62 +2,40 @@
   border-top-style: solid;
   border-top-width: thin;
   border-top-color: #dddddd;
-  border-bottom-style: solid;
-  border-bottom-width: thin;
-  border-bottom-color: #dddddd;
   display: grid;
-  grid-template-rows: 245px 265px;
-  width: 70%;
+  grid-template-rows: 245px 300px;
+  width: 875px;
   margin: 0px auto;
+  text-align: center;
+}
+
+.accessories,
+.relatedItems {
+  text-align: center;
+  overflow: hidden;
 }
 
 .accessoryHead {
   text-align: center;
   margin-top: 25px;
-  margin-bottom: 15px;
-}
-
-.relatedItemsHead {
-  text-align: center;
-  margin-top: 0px;
   margin-bottom: 13px;
 }
 
-#options {
+.accessoriesPictures {
   text-align: center;
-}
-
-.choice {
-  font-family: Helvetica;
-  margin-right: 17px;
-  font-size: 12px;
-}
-
-.choice:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-#recommendations {
-  text-align: center;
-  border-top-color: #858181;
-  border-top-style: solid;
-  border-top-width: thin;
-  margin-top: 5px;
-}
-
-#accessoryList {
-  list-style-type: none;
 }
 
 img {
-  height: 130px;
+  height: 120px;
 }
 
 ul {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  display: inline-block;
+  white-space: nowrap;
+  margin: auto;
+  padding-top: 11.5px;
+  overflow: auto;
+  padding-left: 0px;
 }
 
 li {
@@ -65,6 +43,39 @@ li {
   display: inline-flex;
   text-align: center;
   margin-right: 7px;
+}
+
+.relatedItemsHead {
+  text-align: center;
+  margin-top: 0px;
+}
+
+#recViewOptions {
+  text-align: center;
+}
+
+.choice {
+  font-family: Helvetica;
+  margin-right: 17px;
+  font-size: 10px;
+}
+
+.choice:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#recommendationsProducts {
+  text-align: center;
+  border-top-color: #858181;
+  border-top-style: solid;
+  border-top-width: thin;
+  border-bottom-style: solid;
+  border-bottom-width: thin;
+  border-bottom-color: #dddddd;
+  margin-top: 5px;
+  overflow: auto;
+  padding-bottom: 15px;
 }
 
 b,
@@ -85,6 +96,18 @@ b,
   color: rgb(51, 51, 51);
   font-weight: bold;
   line-height: 1.25;
-  font-size: 18px;
+  font-size: 15.5px;
   margin: 0px 0px 10px;
+}
+
+#circles {
+  display: inline-flex;
+  white-space: nowrap;
+}
+#circleScroller {
+  border: 1px solid #666666;
+  border-radius: 50%;
+  height: 5px;
+  width: 5px;
+  margin-right: 6px;
 }
