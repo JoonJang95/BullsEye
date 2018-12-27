@@ -12,14 +12,8 @@ app.use(express.static(`${__dirname}/../public`));
 
 // Request Handling
 
-app.get('/api/item/', (req, res) => {
-  db.Products.findAll({
-    where: {
-      id: 1,
-    },
-  }).then((results) => {
-    res.json(results);
-  });
+app.get('/api/item', (req, res) => {
+  res.status(200).render('index');
 });
 
 const port = 3000;

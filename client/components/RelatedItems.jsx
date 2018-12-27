@@ -14,7 +14,9 @@ class RelatedItems extends React.Component {
         <ul id="relatedItemsList">
           <li>
             <div>
-              <img src="https://target.scene7.com/is/image/Target/52781985?wid=250&hei=250&qlt=80&fmt=webp" />
+              <a href="/api/item">
+                <img src="https://target.scene7.com/is/image/Target/52781985?wid=250&hei=250&qlt=80&fmt=webp" />
+              </a>
               <div>
                 <b>$231.99</b>
               </div>
