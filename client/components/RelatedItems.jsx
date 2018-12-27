@@ -8,6 +8,9 @@ class RelatedItems extends React.Component {
   render() {
     return (
       <div id="recommendationsProducts">
+        <div class="scrollDiv1">
+          <button class="scrollButton">&#8249;</button>
+        </div>
         <ul id="relatedItemsList">
           <li>
             <div>
@@ -91,10 +94,13 @@ class RelatedItems extends React.Component {
             </div>
           </li>
         </ul>
-        <div id="circles">
-          <div id="circleScroller" />
-          <div id="circleScroller" />
+        <div class="scrollDiv2">
+          <button class="scrollButton">&#8250;</button>
         </div>
+        {/* <div id="circles">
+          <div id="circleScroller" />
+          <div id="circleScroller" />
+        </div> */}
       </div>
     );
   }
