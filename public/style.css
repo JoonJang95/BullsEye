@@ -27,6 +27,7 @@
   text-align: center;
 }
 
+/* Product images (both accessories & related)*/
 img {
   height: 120px;
 }
@@ -47,6 +48,7 @@ li {
   margin-right: 7px;
 }
 
+/* Related items component */
 .relatedItemsHead {
   text-align: center;
   margin-top: 0px;
@@ -84,6 +86,8 @@ li {
   padding-bottom: 25px;
 }
 
+/* text styling */
+
 b,
 .productName {
   font-family: Helvetica;
@@ -105,6 +109,8 @@ b,
   font-size: 15.5px;
   margin: 0px 0px 10px;
 }
+
+/* scroll bar styling */
 
 .scrollDiv1,
 .scrollDiv2 {
