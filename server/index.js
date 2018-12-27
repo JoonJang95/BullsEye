@@ -13,7 +13,7 @@ app.use(express.static(`${__dirname}/../public`));
 // Request Handling
 
 app.get('/api/item', (req, res) => {
-  res.status(200).render('index');
+  res.sendStatus(200);
 });
 
 const port = 3000;

@@ -130,12 +130,6 @@ b,
   color: transparent;
 }
 
-.scrollDiv1:hover > .scrollButton,
-.scrollDiv2:hover > .scrollButton {
-  border-color: #666666;
-  color: black;
-}
-
 button:focus {
   outline: 0;
 }

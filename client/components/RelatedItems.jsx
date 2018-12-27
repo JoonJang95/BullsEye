@@ -1,14 +1,29 @@
 import React from 'react';
+import $ from 'jquery';
 
 class RelatedItems extends React.Component {
   constructor() {
     super();
+
+    this.renderScrollButtons = this.renderScrollButtons.bind(this);
+  }
+
+  renderScrollButtons() {
+    $('.scrollButton')
+      .css('border-color', '#666666')
+      .css('color', 'black');
+  }
+
+  removeScrollButtons() {
+    $('.scrollButton')
+      .css('border-color', 'transparent')
+      .css('color', 'transparent');
   }
 
   render() {
     return (
       <div id="recommendationsProducts">
-        <div class="scrollDiv1">
+        <div class="scrollDiv1" onMouseOver={() => this.renderScrollButtons()}>
           <button class="scrollButton">&#8249;</button>
         </div>
         <ul id="relatedItemsList">
@@ -97,7 +112,9 @@ class RelatedItems extends React.Component {
           </li>
         </ul>
         <div class="scrollDiv2">
-          <button class="scrollButton">&#8250;</button>
+          <button class="scrollButton" onMouseOver={() => this.renderScrollButtons()}>
+            &#8250;
+          </button>
         </div>
         {/* <div id="circles">
           <div id="circleScroller" />
