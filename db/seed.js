@@ -1,8 +1,27 @@
+const faker = require('faker');
 const { db } = require('./index.js');
 const { ViewHistory } = require('./index.js');
 const { Products } = require('./index.js');
 const { Categories } = require('./index.js');
 const { Accessories } = require('./index.js');
+
+const categoriesData = (function () {
+  const categories = ['Tablets', 'Phones', 'Laptop'];
+
+  return categories;
+}());
+
+const productsData = (function () {
+  const products = [];
+
+  return products;
+}());
+
+const accessoriesData = (function () {
+  const accessories = ['hey'];
+
+  return accessories;
+}());
 
 db.sync({ force: true })
   .then(() => {

@@ -1,3 +1,10 @@
+/* Mock Data */
+
+#MockData {
+  display: grid;
+  place-items: center;
+}
+
 /* Outer wrapper */
 #wrapper {
   border-top-style: solid;

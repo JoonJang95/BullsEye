@@ -2,4 +2,4 @@
 node_modules
 
 # webpack bundle
-./public/app.bundle.js
+public/app.bundle.js
