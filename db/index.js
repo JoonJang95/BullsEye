@@ -32,12 +32,21 @@ const Products = db.define(
     name: Sequelize.STRING,
     price: Sequelize.DECIMAL(6, 2),
     imageURL: Sequelize.STRING,
+    categoryName: Sequelize.STRING,
   },
   { timestamps: false },
 );
 
-Categories.hasMany(Products);
-Products.belongsTo(Categories);
+Categories.hasMany(Products, {
+  foreignKey: 'categoryName',
+  sourceKey: 'name',
+  constraints: false,
+});
+Products.belongsTo(Categories, {
+  foreignKey: 'categoryName',
+  targetKey: 'name',
+  constraints: false,
+});
 
 // Accessories Model
 const Accessories = db.define(
@@ -46,12 +55,21 @@ const Accessories = db.define(
     name: Sequelize.STRING,
     price: Sequelize.DECIMAL(6, 2),
     imageURL: Sequelize.STRING,
+    categoryName: Sequelize.STRING,
   },
   { timestamps: false },
 );
 
-Categories.hasMany(Accessories);
-Accessories.belongsTo(Categories);
+Categories.hasMany(Accessories, {
+  foreignKey: 'categoryName',
+  sourceKey: 'name',
+  constraints: false,
+});
+Accessories.belongsTo(Categories, {
+  foreignKey: 'categoryName',
+  targetKey: 'name',
+  constraints: false,
+});
 
 // ViewHistory Model
 const ViewHistory = db.define('viewHistory', {

@@ -15,14 +15,16 @@ class App extends React.Component {
     };
   }
 
-  ComponentDidMount() {}
+  ComponentDidMount() {
+    this.getInitialAccessories();
+  }
 
-  getAccessories() {
+  getInitialAccessories() {
     axios
-      .get('/items/accessories/:id')
+      .get('/items/accessories/ipad')
       .then(results => {
         this.setState({
-          currProduct: results.imageURL,
+          accessories: results,
         });
       })
       .catch(err => {

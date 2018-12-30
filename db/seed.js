@@ -199,7 +199,7 @@ db.sync({ force: true })
               name: product.name,
               price: product.price,
               imageURL: product.imageURL,
-              categoryId: category.get('id'),
+              categoryName: category.get('name'),
             });
           });
 
@@ -208,7 +208,7 @@ db.sync({ force: true })
               name: accessory.name,
               price: accessory.price,
               imageURL: accessory.imageURL,
-              categoryId: category.get('id'),
+              categoryName: category.get('name'),
             });
           });
         })

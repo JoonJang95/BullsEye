@@ -12,10 +12,8 @@ app.use(express.static(`${__dirname}/../public`));
 
 /* Request Handling */
 
-// Get Current Product
-app.get('/currentProduct', (req, res) => {
-  res.sendStatus(200);
-});
+// Get Current Product accessories
+app.get('/items/accessories/ipad', (req, res) => {});
 
 const port = 3000;
 
