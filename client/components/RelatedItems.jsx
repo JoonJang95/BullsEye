@@ -5,7 +5,12 @@ class RelatedItems extends React.Component {
   constructor() {
     super();
 
+    this.state = {
+      none: 'fillout',
+    };
+
     this.renderScrollButtons = this.renderScrollButtons.bind(this);
+    this.removeScrollButtons = this.removeScrollButtons.bind(this);
   }
 
   renderScrollButtons() {
@@ -23,7 +28,11 @@ class RelatedItems extends React.Component {
   render() {
     return (
       <div id="recommendationsProducts">
-        <div class="scrollDiv1" onMouseOver={() => this.renderScrollButtons()}>
+        <div
+          class="scrollDiv1"
+          onMouseOver={this.renderScrollButtons}
+          onMouseLeave={this.removeScrollButtons}
+        >
           <button class="scrollButton">&#8249;</button>
         </div>
         <ul id="relatedItemsList">
@@ -111,10 +120,12 @@ class RelatedItems extends React.Component {
             </div>
           </li>
         </ul>
-        <div class="scrollDiv2">
-          <button class="scrollButton" onMouseOver={() => this.renderScrollButtons()}>
-            &#8250;
-          </button>
+        <div
+          class="scrollDiv2"
+          onMouseOver={this.renderScrollButtons}
+          onMouseLeave={this.removeScrollButtons}
+        >
+          <button class="scrollButton">&#8250;</button>
         </div>
         {/* <div id="circles">
           <div id="circleScroller" />

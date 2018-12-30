@@ -14,7 +14,9 @@ db.authenticate()
     console.error('Unable to connect to the database:', err);
   });
 
-// Categories is is ORM object you can work with & categories is Table-name
+// "Categories" here is an ORM object you can work with & "categories" here is a Table-name
+
+// Categories Model
 const Categories = db.define(
   'categories',
   {
@@ -23,6 +25,7 @@ const Categories = db.define(
   { timestamps: false },
 );
 
+// Products Model
 const Products = db.define(
   'products',
   {
@@ -36,6 +39,7 @@ const Products = db.define(
 Categories.hasMany(Products);
 Products.belongsTo(Categories);
 
+// Accessories Model
 const Accessories = db.define(
   'accessories',
   {
@@ -49,6 +53,7 @@ const Accessories = db.define(
 Categories.hasMany(Accessories);
 Accessories.belongsTo(Categories);
 
+// ViewHistory Model
 const ViewHistory = db.define('viewHistory', {
   productID: Sequelize.INTEGER,
 });
