@@ -1,19 +1,42 @@
 import React from 'react';
 import Accessories from './Accessories.jsx';
 import RelatedItems from './RelatedItems.jsx';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor() {
     super();
+
+    this.state = {
+      currProductImage:
+        'https://target.scene7.com/is/image/Target/GUEST_358cafbc-644b-46cd-a0e3-66b8a6763a75?wid=325&hei=325&qlt=80&fmt=webp',
+      accessories: [],
+      relatedItems: [],
+    };
+  }
+
+  ComponentDidMount() {}
+
+  getAccessories() {
+    axios
+      .get('/items/accessories/:id')
+      .then(results => {
+        this.setState({
+          currProduct: results.imageURL,
+        });
+      })
+      .catch(err => {
+        console.log('there was a error with currProduct get request: ', err);
+      });
   }
 
   render() {
     return (
       <React.Fragment>
         <div id="MockData">
-          <h1>Current Product</h1>
+          <h3>Current Product</h3>
           <div id="MockImageData">
-            <img src="https://target.scene7.com/is/image/Target/GUEST_358cafbc-644b-46cd-a0e3-66b8a6763a75?wid=325&hei=325&qlt=80&fmt=webp" />
+            <img src={this.state.currProductImage} />
           </div>
         </div>
         <div id="wrapper">

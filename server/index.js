@@ -10,9 +10,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(`${__dirname}/../public`));
 
-// Request Handling
+/* Request Handling */
 
-app.get('/api/item', (req, res) => {
+// Get Current Product
+app.get('/currentProduct', (req, res) => {
   res.sendStatus(200);
 });
 
