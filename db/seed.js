@@ -153,22 +153,22 @@ const accessoriesData = (function data() {
           'https://target.scene7.com/is/image/Target/GUEST_1be1b35c-ce83-4b4d-bb9f-de8a3ed36ed9?wid=253&hei=253&qlt=80&fmt=webp',
       },
       {
-        name: "Skullcandy Ink'd Wired Earbuds With Microphone",
-        price: 9.69,
+        name: 'Case Logic Surefit Universal Tablet for Galaxy/Nexus and Kindle - Black',
+        price: 17.99,
+        imageURL:
+          'https://target.scene7.com/is/image/Target/GUEST_099f7a04-605b-4d0a-a540-31a7364fca82?wid=325&hei=325&qlt=80&fmt=webp',
+      },
+      {
+        name: 'Beats X Wireless Earphones - Silver',
+        price: 119.99,
         imageURL:
           'https://target.scene7.com/is/image/Target/GUEST_1be1b35c-ce83-4b4d-bb9f-de8a3ed36ed9?wid=253&hei=253&qlt=80&fmt=webp',
       },
       {
-        name: "Skullcandy Ink'd Wired Earbuds With Microphone",
-        price: 9.69,
+        name: 'Atomi - Mini Surge Protector',
+        price: 14.99,
         imageURL:
-          'https://target.scene7.com/is/image/Target/GUEST_1be1b35c-ce83-4b4d-bb9f-de8a3ed36ed9?wid=253&hei=253&qlt=80&fmt=webp',
-      },
-      {
-        name: "Skullcandy Ink'd Wired Earbuds With Microphone",
-        price: 9.69,
-        imageURL:
-          'https://target.scene7.com/is/image/Target/GUEST_1be1b35c-ce83-4b4d-bb9f-de8a3ed36ed9?wid=253&hei=253&qlt=80&fmt=webp',
+          'https://target.scene7.com/is/image/Target/GUEST_47d6abe9-e38d-4f49-a8f7-04f24dd3b7ac?wid=325&hei=325&qlt=80&fmt=webp',
       },
     ],
     random: [],
@@ -194,6 +194,15 @@ db.sync({ force: true })
         .then((category) => {
           const categoryName = category.get('name');
 
+          productsData[categoryName].forEach((product) => {
+            Products.create({
+              name: product.name,
+              price: product.price,
+              imageURL: product.imageURL,
+              categoryId: category.get('id'),
+            });
+          });
+
           accessoriesData[categoryName].forEach((accessory) => {
             Accessories.create({
               name: accessory.name,
@@ -205,17 +214,6 @@ db.sync({ force: true })
         })
         .then(() => console.log('worked!'));
     });
-    // ORM.Products.create({
-    //   name: 'did it work?',
-    //   price: 100.99,
-    //   imageURL: 'so13513513RL',
-    // });
-
-    // ORM.Accessories.create({
-    //   name: 'workeddd',
-    //   price: 59.99,
-    //   imageURL: '1513eahaeh53151',
-    // });
 
     // ORM.ViewHistory.create({
     //   productID: 1,
