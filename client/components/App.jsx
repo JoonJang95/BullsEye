@@ -15,7 +15,7 @@ class App extends React.Component {
     };
   }
 
-  ComponentDidMount() {
+  componentDidMount() {
     this.getInitialAccessories();
   }
 
@@ -24,7 +24,7 @@ class App extends React.Component {
       .get('/items/accessories/ipad')
       .then(results => {
         this.setState({
-          accessories: results,
+          accessories: results.data,
         });
       })
       .catch(err => {
@@ -36,7 +36,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <div id="MockData">
-          <h3>Current Product</h3>
+          <h1>Current Product</h1>
           <div id="MockImageData">
             <img src={this.state.currProductImage} />
           </div>
@@ -47,7 +47,7 @@ class App extends React.Component {
               {' '}
               <b class="bigHeader">Consider these accessories</b>{' '}
             </div>
-            <Accessories />
+            <Accessories accessories={this.state.accessories} />
           </div>
           <div class="relatedItems">
             <div class="relatedItemsHead">

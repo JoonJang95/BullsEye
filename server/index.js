@@ -12,8 +12,20 @@ app.use(express.static(`${__dirname}/../public`));
 
 /* Request Handling */
 
-// Get Current Product accessories
-app.get('/items/accessories/ipad', (req, res) => {});
+// Get Initial Current Product accessories
+app.get('/items/accessories/ipad', (req, res) => {
+  db.Accessories.findAll({
+    where: {
+      categoryName: 'appleTablets',
+    },
+  }).then((results) => {
+    res.status(200).json(results);
+  });
+});
+
+app.get('/test', (req, res) => {
+  res.json('heyyyy');
+});
 
 const port = 3000;
 
