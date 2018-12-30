@@ -13,7 +13,7 @@ class App extends React.Component {
         <div id="MockData">
           <h1>Current Product</h1>
           <div id="MockImageData">
-            <img src="https://target.scene7.com/is/image/Target/50220026?wid=250&hei=250&qlt=80&fmt=pjpeg" />
+            <img src="https://target.scene7.com/is/image/Target/GUEST_358cafbc-644b-46cd-a0e3-66b8a6763a75?wid=325&hei=325&qlt=80&fmt=webp" />
           </div>
         </div>
         <div id="wrapper">
