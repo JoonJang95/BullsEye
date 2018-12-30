@@ -34,6 +34,13 @@
   text-align: center;
 }
 
+sup {
+  font-size: 7px;
+  position: relative;
+  vertical-align: baseline;
+  top: -0.4em;
+}
+
 /* Product images (both accessories & related)*/
 img {
   height: 120px;
@@ -96,7 +103,8 @@ li {
 /* text styling */
 
 b,
-.productName {
+.productName,
+.accessoryName {
   font-family: Helvetica;
   font-size: 10.5px;
 }

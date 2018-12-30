@@ -21,26 +21,26 @@ const productsData = (function data() {
           'https://target.scene7.com/is/image/Target/54081265?wid=250&hei=250&qlt=80&fmt=webp',
       },
       {
-        name: 'Apple® iPad mini 4 Wi-Fi Only (2015 model)',
+        name: 'Apple iPad mini 4 Wi-Fi Only (2015 model)',
         price: 399.99,
         imageURL:
           'https://target.scene7.com/is/image/Target/50218097?wid=250&hei=250&qlt=80&fmt=webp',
       },
       {
-        name: 'Apple® iPad Pro 10.5" Wi-Fi Only (2017 Model)',
+        name: 'Apple iPad Pro 10.5" Wi-Fi Only (2017 Model)',
         price: 699.99,
         imageURL:
           'https://target.scene7.com/is/image/Target/54081265?wid=250&hei=250&qlt=80&fmt=webp',
       },
       {
         name:
-          'SuprJETech® iPad 9.7" (2017 Model) Slim-Fit Smart Case Cover with Auto-Sleep & Wake Feature',
+          'SuprJETech iPad 9.7" (2017 Model) Slim-Fit Smart Case Cover with Auto-Sleep & Wake Feature',
         price: 12.99,
         imageURL:
           'https://target.scene7.com/is/image/Target/GUEST_2ee190df-cf71-4e03-abc6-c126630b8f0a?wid=325&hei=325&qlt=80&fmt=webp',
       },
       {
-        name: 'Apple® Smart Keyboard for 10.5" iPad Pro - US English',
+        name: 'Apple Smart Keyboard for 10.5" iPad Pro - US English',
         price: 143.99,
         imageURL:
           'https://target.scene7.com/is/image/Target/GUEST_990e73d1-cbe1-4fec-917e-021db250f5d0?wid=325&hei=325&qlt=80&fmt=webp',
@@ -54,7 +54,7 @@ const productsData = (function data() {
     ],
     non_Apple_Tablets: [
       {
-        name: 'Fellowes® Tablet Riser, 8 3/8 x 5 3/8 x 4 5/8, Black/Gray',
+        name: 'Fellowes Tablet Riser, 8 3/8 x 5 3/8 x 4 5/8, Black/Gray',
         price: 11.69,
         imageURL:
           'https://target.scene7.com/is/image/Target/GUEST_2034b488-8b70-4a97-ab2e-f04b4d6fcd98?wid=253&hei=253&qlt=80&fmt=webp',
@@ -109,31 +109,31 @@ const accessoriesData = (function data() {
   const accessories = {
     appleTablets: [
       {
-        name: 'Apple® Pencil 1st Generation',
+        name: 'Apple Pencil 1st Generation',
         price: 99.99,
         imageURL:
           'https://target.scene7.com/is/image/Target/50220026?wid=250&hei=250&qlt=80&fmt=pjpeg',
       },
       {
-        name: 'Apple® Lightning to USB Cable (2m)',
+        name: 'Apple Lightning to USB Cable (2m)',
         price: 29.99,
         imageURL:
           'https://target.scene7.com/is/image/Target/50512957?wid=250&hei=250&qlt=80&fmt=webp',
       },
       {
-        name: 'Apple® AirPods',
+        name: 'Apple AirPods',
         price: 159.99,
         imageURL:
           'https://target.scene7.com/is/image/Target/52106337?wid=250&hei=250&qlt=80&fmt=webp',
       },
       {
-        name: 'Apple® Wired Earpods',
+        name: 'Apple Wired Earpods',
         price: 29.99,
         imageURL:
           'https://target.scene7.com/is/image/Target/51530146?wid=250&hei=250&qlt=80&fmt=webp',
       },
       {
-        name: 'Apple® Lightning to Digital AV Adapter',
+        name: 'Apple Lightning to Digital AV Adapter',
         price: 49.99,
         imageURL:
           'https://target.scene7.com/is/image/Target/51677595?wid=250&hei=250&qlt=80&fmt=webp',
