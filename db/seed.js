@@ -94,11 +94,11 @@ const productsData = (function data() {
     random: [],
   };
 
-  for (let i = 1; i <= 90; i++) {
+  for (let i = 1; i <= 88; i++) {
     products.random.push({
       name: faker.commerce.productName(),
       price: faker.finance.amount(),
-      imageURL: faker.image.imageUrl(),
+      imageURL: faker.random.image(),
     });
   }
 
@@ -178,7 +178,7 @@ const accessoriesData = (function data() {
     accessories.random.push({
       name: faker.commerce.productName(),
       price: faker.finance.amount(),
-      imageURL: faker.image.imageUrl(),
+      imageURL: faker.random.image(),
     });
   }
 

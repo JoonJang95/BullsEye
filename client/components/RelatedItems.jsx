@@ -2,12 +2,8 @@ import React from 'react';
 import $ from 'jquery';
 
 class RelatedItems extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      none: 'fillout',
-    };
+  constructor(props) {
+    super(props);
 
     this.renderScrollButtons = this.renderScrollButtons.bind(this);
     this.removeScrollButtons = this.removeScrollButtons.bind(this);
@@ -36,89 +32,32 @@ class RelatedItems extends React.Component {
           <button class="scrollButton">&#8249;</button>
         </div>
         <ul id="relatedItemsList">
-          <li>
-            <div>
-              <a href="/api/item">
-                <img src="https://target.scene7.com/is/image/Target/52781985?wid=250&hei=250&qlt=80&fmt=webp" />
-              </a>
-              <div>
-                <b>$231.99</b>
-              </div>
-              <div class="productName">Apple Stuff</div>
-            </div>
-          </li>
-          <li>
-            <div>
-              <img src="https://target.scene7.com/is/image/Target/GUEST_d9443d94-3add-4c92-a657-539757df635a?wid=325&hei=325&qlt=80&fmt=webp" />
-              <div>
-                <b>$249.99</b>
-              </div>
-              <div class="productName">Apple Stuff</div>
-            </div>
-          </li>
-          <li>
-            <div>
-              <img src="https://target.scene7.com/is/image/Target/54212298?wid=250&hei=250&qlt=80&fmt=webp" />
-              <div>
-                <b>$278.99</b>
-              </div>
-              <div class="productName">Apple Stuff</div>
-            </div>
-          </li>
-          <li>
-            <div>
-              <img src="https://target.scene7.com/is/image/Target/52656217?wid=250&hei=250&qlt=80&fmt=webp" />
-              <div>
-                <b>$269.99</b>
-              </div>
-              <div class="productName">Apple Stuff</div>
-            </div>
-          </li>
-          <li>
-            <div>
-              <img src="https://target.scene7.com/is/image/Target/52588963?wid=250&hei=250&qlt=80&fmt=webp" />
-              <div>
-                <b>$175.99</b>
-              </div>
-              <div class="productName">Apple Stuff</div>
-            </div>
-          </li>
-          <li>
-            <div>
-              <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRaTWvWIswRRbqBbB1zkyp89PpILwi86hd2kqevQvLsZ6l6TaeBaqB1aUjOE3Ycots0xvEPBi1-6fTXNysM9mndHfQUXUoIuL9uytB_WYaStWgl09e8j2vMfA&usqp=CAE" />
-              <div>
-                <b>$213.99</b>
-              </div>
-              <div class="productName">Apple Stuff</div>
-            </div>
-          </li>
-          <li>
-            <div>
-              <img src="https://target.scene7.com/is/image/Target/50790686?wid=250&hei=250&qlt=80&fmt=webp" />
-              <div>
-                <b>$199.99</b>
-              </div>
-              <div class="productName">Apple Stuff</div>
-            </div>
-          </li>
-          <li>
-            <div>
-              <img src="https://target.scene7.com/is/image/Target/52781985?wid=250&hei=250&qlt=80&fmt=webp" />
-              <div>
-                <b>$231.99</b>
-              </div>
-              <div class="productName">Apple Stuff</div>
-            </div>
-          </li>
-          <li>
-            <div>
-              <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRaTWvWIswRRbqBbB1zkyp89PpILwi86hd2kqevQvLsZ6l6TaeBaqB1aUjOE3Ycots0xvEPBi1-6fTXNysM9mndHfQUXUoIuL9uytB_WYaStWgl09e8j2vMfA&usqp=CAE" />
-              <div>
-                <b>$213.99</b>
-              </div>
-              <div class="productName">Apple Stuff</div>
-            </div>
-          </li>
+          {this.props.relatedProducts.map(item => {
+            let AppleProduct = () => {
+              return (
+                <div class="productName">
+                  Apple<sup>®</sup>{' '}
+                  {item.name.length > 20 ? `${item.name.slice(5, 23)}...` : item.name.slice(5)}
+                </div>
+              );
+            };
+
+            let NonAppleProduct = () => {
+              return <div class="productName">{`${item.name.slice(0, 23)}...`}</div>;
+            };
+
+            return (
+              <li>
+                <div>
+                  <img src={item.imageURL} />
+                  <div>
+                    <b>${item.price}</b>
+                  </div>
+                  {item.categoryName === 'appleTablets' ? <AppleProduct /> : <NonAppleProduct />}
+                </div>
+              </li>
+            );
+          })}
         </ul>
         <div
           class="scrollDiv2"
