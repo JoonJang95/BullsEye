@@ -23,13 +23,10 @@ class RelatedItems extends React.Component {
   }
 
   clickHandlerRight(e) {
-    console.log($('#recommendationsProducts'));
     $('#relatedItemsList').scrollTo('max', 425);
   }
 
   clickHandlerLeft(e) {
-    console.log('clickeeed');
-    console.log($('#recommendationsProducts'));
     $('#relatedItemsList').scrollTo(0, 425);
   }
 

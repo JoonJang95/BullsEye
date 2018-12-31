@@ -1,6 +1,7 @@
 import React from 'react';
 import Accessories from './Accessories.jsx';
 import RelatedItems from './RelatedItems.jsx';
+import ViewHistory from './ViewHistory.jsx';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -15,10 +16,23 @@ class App extends React.Component {
       },
       accessories: [],
       relatedItems: [],
+      viewHistory: false,
+      pastItems: [
+        {
+          id: 0,
+          name: 'Apple iPad 9.7" Wi-Fi Only (2018 Model, 6th Generation)',
+          price: '499.99',
+          imageURL:
+            'https://target.scene7.com/is/image/Target/GUEST_358cafbc-644b-46cd-a0e3-66b8a6763a75?wid=325&hei=325&qlt=80&fmt=webp',
+          categoryName: 'appleTablets',
+        },
+      ],
     };
 
     this.shuffleRelatedItems = this.shuffleRelatedItems.bind(this);
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
+    this.getViewHistory = this.getViewHistory.bind(this);
+    this.getRelatedItems = this.getRelatedItems.bind(this);
   }
 
   componentDidMount() {
@@ -104,6 +118,18 @@ class App extends React.Component {
     return relatedItemsList.length > 12 ? relatedItemsList.slice(0, 12) : relatedItemsList;
   }
 
+  getViewHistory() {
+    this.setState({
+      viewHistory: true,
+    });
+  }
+
+  getRelatedItems() {
+    this.setState({
+      viewHistory: false,
+    });
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -126,11 +152,17 @@ class App extends React.Component {
               <b class="bigHeader">Recommended</b>
             </div>
             <div id="recViewOptions">
-              <span class="choice">Other recommendations</span>
-              <span class="choice">Recently viewed items</span>
+              <span class="choice" onClick={this.getRelatedItems}>
+                Other recommendations
+              </span>
+              <span class="choice" onClick={this.getViewHistory}>
+                Recently viewed items
+              </span>
             </div>
             <RelatedItems
-              relatedProducts={this.state.relatedItems}
+              relatedProducts={
+                this.state.viewHistory ? this.state.pastItems : this.state.relatedItems
+              }
               func={this.changeCurrentProduct}
             />
           </div>
