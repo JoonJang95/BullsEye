@@ -1,0 +1,167 @@
+/* Mock Data */
+
+#MockData {
+  display: grid;
+  place-items: center;
+}
+
+/* Outer wrapper */
+#wrapper {
+  border-top-style: solid;
+  border-top-width: thin;
+  border-top-color: #dddddd;
+  display: grid;
+  grid-template-rows: 245px 300px;
+  width: 815px;
+  margin: 0px auto;
+  text-align: center;
+}
+
+.accessories,
+.relatedItems {
+  text-align: center;
+  overflow: hidden;
+}
+
+/* accessory component */
+.accessoryHead {
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 13px;
+}
+
+.accessoriesPictures {
+  text-align: center;
+}
+
+sup {
+  font-size: 7px;
+  position: relative;
+  vertical-align: baseline;
+  top: -0.4em;
+}
+
+/* Product images (both accessories & related)*/
+img {
+  height: 120px;
+}
+
+ul {
+  display: inline-block;
+  white-space: nowrap;
+  margin: auto;
+  padding-top: 11.5px;
+  overflow: auto;
+  padding-left: 0px;
+}
+
+li {
+  list-style: none;
+  display: inline-flex;
+  text-align: center;
+  margin-right: 7px;
+}
+
+/* Related items component */
+.relatedItemsHead {
+  text-align: center;
+  margin-top: 0px;
+}
+
+#recViewOptions {
+  text-align: center;
+}
+
+.choice {
+  font-family: Helvetica;
+  margin-right: 17px;
+  font-size: 10px;
+}
+
+.choice:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#recommendationsProducts {
+  text-align: center;
+  border-top-color: #858181;
+  border-top-style: solid;
+  border-top-width: thin;
+  border-bottom-style: solid;
+  border-bottom-width: thin;
+  border-bottom-color: #dddddd;
+  margin-top: 5px;
+  overflow: auto;
+  display: flex;
+}
+
+#relatedItemsList {
+  padding-bottom: 25px;
+}
+
+/* text styling */
+
+b,
+.productName,
+.accessoryName {
+  font-family: Helvetica;
+  font-size: 10.5px;
+}
+
+.bigHeader {
+  font-style: normal;
+  font-family: Helvetica;
+  letter-spacing: 0px;
+  text-indent: 0px;
+  text-shadow: none;
+  text-transform: none;
+  vertical-align: baseline;
+  white-space: normal;
+  color: rgb(51, 51, 51);
+  font-weight: bold;
+  line-height: 1.25;
+  font-size: 15.5px;
+  margin: 0px 0px 10px;
+}
+
+/* scroll bar styling */
+
+.scrollDiv1,
+.scrollDiv2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.scrollDiv1 {
+  margin-right: 7px;
+}
+
+.scrollDiv2 {
+  margin-left: 7px;
+}
+
+.scrollButton {
+  border: 1px solid;
+  border-radius: 50%;
+  height: 23px;
+  width: 23px;
+  border-color: transparent;
+  color: transparent;
+}
+
+button:focus {
+  outline: 0;
+}
+/* #circles {
+  display: inline-flex;
+  white-space: nowrap;
+}
+#circleScroller {
+  border: 1px solid #666666;
+  border-radius: 50%;
+  height: 5px;
+  width: 5px;
+  margin-right: 6px;
+} */
