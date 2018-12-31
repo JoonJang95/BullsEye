@@ -18,6 +18,7 @@ class App extends React.Component {
     };
 
     this.shuffleRelatedItems = this.shuffleRelatedItems.bind(this);
+    this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
   }
 
   componentDidMount() {
@@ -51,8 +52,16 @@ class App extends React.Component {
       });
   }
 
+  changeCurrentProduct(e) {
+    this.setState({
+      currProductImage: {
+        imageURL: e.target.src,
+      },
+    });
+  }
+
   shuffleRelatedItems(data) {
-    let productsMax = Math.floor(Math.random() * 3) + 3;
+    let productsMax = Math.floor(Math.random() * 4) + 3;
     let productsMin = Math.floor(Math.random() * 3);
     let randomProductsNum = Math.floor(Math.random() * 80);
 
@@ -87,7 +96,7 @@ class App extends React.Component {
         <div id="MockData">
           <h1>Current Product</h1>
           <div id="MockImageData">
-            <img src={this.state.currProductImage.imageURL} />
+            <img src={this.state.currProductImage.imageURL} onClick={this.changeCurrentProduct} />
           </div>
         </div>
         <div id="wrapper">
@@ -106,7 +115,10 @@ class App extends React.Component {
               <span class="choice">Other recommendations</span>
               <span class="choice">Recently viewed items</span>
             </div>
-            <RelatedItems relatedProducts={this.state.relatedItems} />
+            <RelatedItems
+              relatedProducts={this.state.relatedItems}
+              func={this.changeCurrentProduct}
+            />
           </div>
         </div>
       </React.Fragment>

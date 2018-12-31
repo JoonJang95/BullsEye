@@ -49,7 +49,11 @@ class RelatedItems extends React.Component {
             return (
               <li>
                 <div>
-                  <img src={item.imageURL} />
+                  <img
+                    src={item.imageURL}
+                    data-categoryname={item.categoryName}
+                    onClick={this.props.func}
+                  />
                   <div>
                     <b>${item.price}</b>
                   </div>

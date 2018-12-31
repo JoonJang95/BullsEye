@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JoonJang95/RecommendedProductsModule.git"
+    "url": "git+https://github.com/FEC-Plato/RecommendedProductsModule.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JoonJang95/RecommendedProductsModule/issues"
+    "url": "https://github.com/FEC-Plato/RecommendedProductsModule/issues"
   },
-  "homepage": "https://github.com/JoonJang95/RecommendedProductsModule#readme",
+  "homepage": "https://github.com/FEC-Plato/RecommendedProductsModule#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "babel-loader": "^8.0.4",
