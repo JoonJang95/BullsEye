@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import scrollTo from 'jquery.scrollto';
 
 class RelatedItems extends React.Component {
   constructor(props) {
@@ -22,7 +23,14 @@ class RelatedItems extends React.Component {
   }
 
   clickHandlerRight(e) {
-    $('.scrollRight').scrollTop('max');
+    console.log($('#recommendationsProducts'));
+    $('#relatedItemsList').scrollTo('max', 425);
+  }
+
+  clickHandlerLeft(e) {
+    console.log('clickeeed');
+    console.log($('#recommendationsProducts'));
+    $('#relatedItemsList').scrollTo(0, 425);
   }
 
   render() {
@@ -33,7 +41,9 @@ class RelatedItems extends React.Component {
           onMouseOver={this.renderScrollButtons}
           onMouseLeave={this.removeScrollButtons}
         >
-          <button class="scrollButton">&#8249;</button>
+          <button class="scrollButton" onClick={this.clickHandlerLeft}>
+            &#8249;
+          </button>
         </div>
         <ul id="relatedItemsList">
           {this.props.relatedProducts.map(item => {
