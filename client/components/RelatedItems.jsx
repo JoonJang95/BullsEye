@@ -21,6 +21,10 @@ class RelatedItems extends React.Component {
       .css('color', 'transparent');
   }
 
+  clickHandlerRight(e) {
+    $('.scrollRight').scrollTop('max');
+  }
+
   render() {
     return (
       <div id="recommendationsProducts">
@@ -48,16 +52,16 @@ class RelatedItems extends React.Component {
 
             return (
               <li>
-                <div>
+                <div class="imageRows">
                   <img
                     src={item.imageURL}
                     data-categoryname={item.categoryName}
                     onClick={this.props.func}
                   />
-                  <div>
-                    <b>${item.price}</b>
+                  <div class="productInformation">
+                    <b class="itemPrice">${item.price}</b>
+                    {item.categoryName === 'appleTablets' ? <AppleProduct /> : <NonAppleProduct />}
                   </div>
-                  {item.categoryName === 'appleTablets' ? <AppleProduct /> : <NonAppleProduct />}
                 </div>
               </li>
             );
@@ -68,7 +72,9 @@ class RelatedItems extends React.Component {
           onMouseOver={this.renderScrollButtons}
           onMouseLeave={this.removeScrollButtons}
         >
-          <button class="scrollButton">&#8250;</button>
+          <button class="scrollButton scrollRight" onClick={this.clickHandlerRight}>
+            &#8250;
+          </button>
         </div>
         {/* <div id="circles">
           <div id="circleScroller" />

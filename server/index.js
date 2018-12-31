@@ -48,6 +48,38 @@ app.get('/items/relatedItems/ipad', (req, res) => {
     });
 });
 
+// Get related items & accessories data for new product
+
+app.get('/items/changeProduct/:categoryName', (req, res) => {
+  console.log(req.params.categoryName);
+  db.Accessories.findAll({
+    where: {
+      categoryName: req.params.categoryName,
+    },
+  })
+    .then((accessories) => {
+      db.Products.findAll().then((products) => {
+        const appleProducts = products.slice(0, 6);
+        const nonAppleProducts = products.slice(6, 12);
+        const randomProducts = products.slice(12);
+
+        res.status(200).json({
+          accessories,
+          appleProducts,
+          nonAppleProducts,
+          randomProducts,
+        });
+      });
+    })
+    .catch((error) => {
+      console.log(
+        'There was an error getting new related items and accessories from the DB: ',
+        error,
+      );
+      res.sendStatus(404);
+    });
+});
+
 const port = 3000;
 
 app.listen(port, () => {

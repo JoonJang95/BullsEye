@@ -60,10 +60,11 @@ const productsData = (function data() {
           'https://target.scene7.com/is/image/Target/GUEST_2034b488-8b70-4a97-ab2e-f04b4d6fcd98?wid=253&hei=253&qlt=80&fmt=webp',
       },
       {
-        name: 'Visual Land 7" ProFolio Universal Tablet Case',
-        price: 18.98,
+        name:
+          'For Samsung Galaxy Tab E Lite 7.0 / Tab 3 Lite 7.0 Tablet Kiddie Case Lightweight Shock Proof Stand Cover, Blue',
+        price: 49.99,
         imageURL:
-          'https://i5.walmartimages.com/asr/844d4d08-6060-45d0-9c30-fc4ee96f30dc_1.c6c3debb4cc5c56969c263c1f3512ac4.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF',
+          'https://i5.walmartimages.com/asr/6a6aa026-042c-46e3-a5ce-131a9a3974db_1.665e9610a19f71541a39aa93a8c1d748.jpeg?odnWidth=180&odnHeight=180&odnBg=ffffff',
       },
       {
         name: 'Samsung Galaxy Tab A 10.1" Tablet Wi-Fi, White - 16GB',
@@ -153,16 +154,16 @@ const accessoriesData = (function data() {
           'https://target.scene7.com/is/image/Target/GUEST_1be1b35c-ce83-4b4d-bb9f-de8a3ed36ed9?wid=253&hei=253&qlt=80&fmt=webp',
       },
       {
-        name: 'Case Logic Surefit Universal Tablet for Galaxy/Nexus and Kindle - Black',
-        price: 17.99,
+        name: 'Ematic Tablet Accessory Kit with Speaker (EP218)',
+        price: 12.99,
         imageURL:
-          'https://target.scene7.com/is/image/Target/GUEST_099f7a04-605b-4d0a-a540-31a7364fca82?wid=325&hei=325&qlt=80&fmt=webp',
+          'https://i5.walmartimages.com/asr/1e599ee6-6370-40d2-9732-e22cd32a1695_1.f4d7f1d06e4a51bd7bbb71bdec29be6e.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF',
       },
       {
         name: 'Beats X Wireless Earphones - Silver',
         price: 119.99,
         imageURL:
-          'https://target.scene7.com/is/image/Target/GUEST_1be1b35c-ce83-4b4d-bb9f-de8a3ed36ed9?wid=253&hei=253&qlt=80&fmt=webp',
+          'https://target.scene7.com/is/image/Target/54137609?wid=250&hei=250&qlt=80&fmt=webp',
       },
       {
         name: 'Atomi - Mini Surge Protector',

@@ -53,29 +53,44 @@ class App extends React.Component {
   }
 
   changeCurrentProduct(e) {
-    this.setState({
-      currProductImage: {
-        imageURL: e.target.src,
-      },
-    });
+    let clickedURL = e.target.src;
+    let categoryNameData = e.target.dataset.categoryname;
+
+    axios
+      .get(`/items/changeProduct/${e.target.dataset.categoryname}`)
+      .then(results => {
+        this.setState({
+          currProductImage: {
+            imageURL: clickedURL,
+            categoryName: categoryNameData,
+          },
+          accessories: results.data.accessories,
+          relatedItems: this.shuffleRelatedItems(results.data),
+        });
+      })
+      .catch(err => {
+        console.log(
+          "there was an error with the changeProduct's accessory & related items get request: ",
+          err,
+        );
+      });
   }
 
   shuffleRelatedItems(data) {
     let productsMax = Math.floor(Math.random() * 4) + 3;
     let productsMin = Math.floor(Math.random() * 3);
     let randomProductsNum = Math.floor(Math.random() * 80);
-
     let relatedItemsList = [];
 
     if (this.state.currProductImage.categoryName === 'appleTablets') {
       relatedItemsList = [
-        ...data.appleProducts.slice(0, productsMax),
+        ...data.appleProducts.slice(productsMin, productsMax),
         ...data.nonAppleProducts.slice(productsMin, productsMax),
         ...data.randomProducts.slice(randomProductsNum),
       ];
     } else if (this.state.currProductImage.categoryName === 'non_Apple_Tablets') {
       relatedItemsList = [
-        ...data.nonAppleProducts.slice(0, productsMax),
+        ...data.nonAppleProducts.slice(productsMin, productsMax),
         ...data.appleProducts.slice(productsMin, productsMax),
         ...data.randomProducts.slice(randomProductsNum),
       ];
@@ -86,7 +101,6 @@ class App extends React.Component {
         ...data.nonAppleProducts.slice(productsMin, productsMax),
       ];
     }
-
     return relatedItemsList.length > 12 ? relatedItemsList.slice(0, 12) : relatedItemsList;
   }
 
@@ -96,7 +110,7 @@ class App extends React.Component {
         <div id="MockData">
           <h1>Current Product</h1>
           <div id="MockImageData">
-            <img src={this.state.currProductImage.imageURL} onClick={this.changeCurrentProduct} />
+            <img src={this.state.currProductImage.imageURL} />
           </div>
         </div>
         <div id="wrapper">

@@ -12,7 +12,7 @@
   border-top-color: #dddddd;
   display: grid;
   grid-template-rows: 245px 300px;
-  width: 815px;
+  width: 848px;
   margin: 0px auto;
   text-align: center;
 }
@@ -43,7 +43,7 @@ sup {
 
 /* Product images (both accessories & related)*/
 img {
-  height: 120px;
+  height: 115px;
 }
 
 ul {
@@ -98,6 +98,16 @@ li {
 
 #relatedItemsList {
   padding-bottom: 25px;
+}
+
+.imageRows:hover,
+.imageRows:hover > .productInformation {
+  cursor: pointer;
+}
+
+.imageRows:hover > .productInformation > .productName,
+.imageRows:hover > .productInformation > .itemPrice {
+  border-bottom: 0.3px solid;
 }
 
 /* text styling */
