@@ -1,7 +1,6 @@
 import React from 'react';
 import Accessories from './Accessories.jsx';
 import RelatedItems from './RelatedItems.jsx';
-import ViewHistory from './ViewHistory.jsx';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -9,7 +8,10 @@ class App extends React.Component {
     super();
 
     this.state = {
-      currProductImage: {
+      currProduct: {
+        productID: 0,
+        name: 'Apple iPad 9.7" Wi-Fi Only (2018 Model, 6th Generation)',
+        price: '499.99',
         imageURL:
           'https://target.scene7.com/is/image/Target/GUEST_358cafbc-644b-46cd-a0e3-66b8a6763a75?wid=325&hei=325&qlt=80&fmt=webp',
         categoryName: 'appleTablets',
@@ -19,7 +21,7 @@ class App extends React.Component {
       viewHistory: false,
       pastItems: [
         {
-          id: 0,
+          productID: 0,
           name: 'Apple iPad 9.7" Wi-Fi Only (2018 Model, 6th Generation)',
           price: '499.99',
           imageURL:
@@ -74,7 +76,7 @@ class App extends React.Component {
       .get(`/items/changeProduct/${e.target.dataset.categoryname}`)
       .then(results => {
         this.setState({
-          currProductImage: {
+          currProduct: {
             imageURL: clickedURL,
             categoryName: categoryNameData,
           },
@@ -90,19 +92,29 @@ class App extends React.Component {
       });
   }
 
+  saveCurrProduct({ productID, name, price, imageURL, categoryName }) {
+    axios.post('items/saveProduct', {
+      productID: productID,
+      name: name,
+      price: price,
+      imageURL: imageURL,
+      categoryName: categoryName,
+    });
+  }
+
   shuffleRelatedItems(data) {
     let productsMax = Math.floor(Math.random() * 4) + 3;
     let productsMin = Math.floor(Math.random() * 3);
     let randomProductsNum = Math.floor(Math.random() * 80);
     let relatedItemsList = [];
 
-    if (this.state.currProductImage.categoryName === 'appleTablets') {
+    if (this.state.currProduct.categoryName === 'appleTablets') {
       relatedItemsList = [
         ...data.appleProducts.slice(productsMin, productsMax),
         ...data.nonAppleProducts.slice(productsMin, productsMax),
         ...data.randomProducts.slice(randomProductsNum),
       ];
-    } else if (this.state.currProductImage.categoryName === 'non_Apple_Tablets') {
+    } else if (this.state.currProduct.categoryName === 'non_Apple_Tablets') {
       relatedItemsList = [
         ...data.nonAppleProducts.slice(productsMin, productsMax),
         ...data.appleProducts.slice(productsMin, productsMax),
@@ -136,7 +148,7 @@ class App extends React.Component {
         <div id="MockData">
           <h1>Current Product</h1>
           <div id="MockImageData">
-            <img src={this.state.currProductImage.imageURL} />
+            <img src={this.state.currProduct.imageURL} />
           </div>
         </div>
         <div id="wrapper">
