@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import scrollTo from 'jquery.scrollto';
 
 class RelatedItems extends React.Component {
   constructor(props) {
@@ -21,6 +22,14 @@ class RelatedItems extends React.Component {
       .css('color', 'transparent');
   }
 
+  clickHandlerRight(e) {
+    $('#relatedItemsList').scrollTo('max', 425);
+  }
+
+  clickHandlerLeft(e) {
+    $('#relatedItemsList').scrollTo(0, 425);
+  }
+
   render() {
     return (
       <div id="recommendationsProducts">
@@ -29,7 +38,9 @@ class RelatedItems extends React.Component {
           onMouseOver={this.renderScrollButtons}
           onMouseLeave={this.removeScrollButtons}
         >
-          <button class="scrollButton">&#8249;</button>
+          <button class="scrollButton" onClick={this.clickHandlerLeft}>
+            &#8249;
+          </button>
         </div>
         <ul id="relatedItemsList">
           {this.props.relatedProducts.map(item => {
@@ -48,12 +59,16 @@ class RelatedItems extends React.Component {
 
             return (
               <li>
-                <div>
-                  <img src={item.imageURL} />
-                  <div>
-                    <b>${item.price}</b>
+                <div class="imageRows">
+                  <img
+                    src={item.imageURL}
+                    data-categoryname={item.categoryName}
+                    onClick={this.props.func}
+                  />
+                  <div class="productInformation">
+                    <b class="itemPrice">${item.price}</b>
+                    {item.categoryName === 'appleTablets' ? <AppleProduct /> : <NonAppleProduct />}
                   </div>
-                  {item.categoryName === 'appleTablets' ? <AppleProduct /> : <NonAppleProduct />}
                 </div>
               </li>
             );
@@ -64,7 +79,9 @@ class RelatedItems extends React.Component {
           onMouseOver={this.renderScrollButtons}
           onMouseLeave={this.removeScrollButtons}
         >
-          <button class="scrollButton">&#8250;</button>
+          <button class="scrollButton scrollRight" onClick={this.clickHandlerRight}>
+            &#8250;
+          </button>
         </div>
         {/* <div id="circles">
           <div id="circleScroller" />
