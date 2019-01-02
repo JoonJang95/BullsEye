@@ -72,9 +72,17 @@ Accessories.belongsTo(Categories, {
 });
 
 // ViewHistory Model
-const ViewHistory = db.define('viewHistory', {
-  productID: Sequelize.INTEGER,
-});
+const ViewHistory = db.define(
+  'viewHistory',
+  {
+    name: Sequelize.STRING,
+    productID: Sequelize.INTEGER,
+    price: Sequelize.DECIMAL(6, 2),
+    imageURL: Sequelize.STRING,
+    categoryName: Sequelize.STRING,
+  },
+  { timestamps: false },
+);
 
 // database Object.sync does all the syncs
 

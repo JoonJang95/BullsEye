@@ -19,16 +19,7 @@ class App extends React.Component {
       accessories: [],
       relatedItems: [],
       viewHistory: false,
-      pastItems: [
-        {
-          productID: 0,
-          name: 'Apple iPad 9.7" Wi-Fi Only (2018 Model, 6th Generation)',
-          price: '499.99',
-          imageURL:
-            'https://target.scene7.com/is/image/Target/GUEST_358cafbc-644b-46cd-a0e3-66b8a6763a75?wid=325&hei=325&qlt=80&fmt=webp',
-          categoryName: 'appleTablets',
-        },
-      ],
+      pastItems: [],
     };
 
     this.shuffleRelatedItems = this.shuffleRelatedItems.bind(this);
@@ -40,6 +31,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getInitialAccessories();
     this.getInitialRelatedItems();
+    this.getPastItems();
   }
 
   getInitialAccessories() {
@@ -59,6 +51,7 @@ class App extends React.Component {
     axios
       .get('/items/relatedItems/ipad')
       .then(results => {
+        console.log('related items', results);
         this.setState({
           relatedItems: this.shuffleRelatedItems(results.data),
         });
@@ -68,21 +61,62 @@ class App extends React.Component {
       });
   }
 
+  getPastItems() {
+    axios
+      .get('items/savedProduct')
+      .then(results => {
+        console.log('old items history', results);
+        this.setState({
+          pastItems: results.data,
+        });
+      })
+      .catch(err => {
+        console.log('there was an error with the pastItems get request: ', err);
+      });
+  }
+
+  saveCurrProduct({ productID, name, price, imageURL, categoryName }) {
+    console.log(productID, name, price);
+    axios
+      .post('items/saveProduct', {
+        productID: productID,
+        name: name,
+        price: price,
+        imageURL: imageURL,
+        categoryName: categoryName,
+      })
+      .then(response => {
+        this.getPastItems();
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   changeCurrentProduct(e) {
     let clickedURL = e.target.src;
     let categoryNameData = e.target.dataset.categoryname;
+    let productID = e.target.dataset.productid;
+    let name = e.target.dataset.name;
+    let price = e.target.dataset.price;
 
     axios
       .get(`/items/changeProduct/${e.target.dataset.categoryname}`)
       .then(results => {
         this.setState({
           currProduct: {
+            productID: productID,
+            name: name,
+            price: price,
             imageURL: clickedURL,
             categoryName: categoryNameData,
           },
           accessories: results.data.accessories,
           relatedItems: this.shuffleRelatedItems(results.data),
         });
+
+        this.saveCurrProduct(this.state.currProduct);
       })
       .catch(err => {
         console.log(
@@ -90,16 +124,6 @@ class App extends React.Component {
           err,
         );
       });
-  }
-
-  saveCurrProduct({ productID, name, price, imageURL, categoryName }) {
-    axios.post('items/saveProduct', {
-      productID: productID,
-      name: name,
-      price: price,
-      imageURL: imageURL,
-      categoryName: categoryName,
-    });
   }
 
   shuffleRelatedItems(data) {

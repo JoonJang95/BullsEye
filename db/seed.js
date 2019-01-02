@@ -216,9 +216,14 @@ db.sync({ force: true })
         .then(() => console.log('worked!'));
     });
 
-    // ORM.ViewHistory.create({
-    //   productID: 1,
-    // });
+    ViewHistory.create({
+      name: 'Apple iPad 9.7" Wi-Fi Only (2018 Model, 6th Generation)',
+      productID: 0,
+      price: '499.99',
+      imageURL:
+        'https://target.scene7.com/is/image/Target/GUEST_358cafbc-644b-46cd-a0e3-66b8a6763a75?wid=325&hei=325&qlt=80&fmt=webp',
+      categoryName: 'appleTablets',
+    });
   })
   .catch(() => {
     console.log('error with syncing seeds');
