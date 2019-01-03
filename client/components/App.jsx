@@ -22,6 +22,7 @@ class App extends React.Component {
       viewHistory: false,
       pastItems: [],
       visible: false,
+      currQuickView: {},
     };
 
     this.shuffleRelatedItems = this.shuffleRelatedItems.bind(this);
@@ -30,6 +31,7 @@ class App extends React.Component {
     this.getRelatedItems = this.getRelatedItems.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.setCurrQuickView = this.setCurrQuickView.bind(this);
   }
 
   componentDidMount() {
@@ -69,6 +71,9 @@ class App extends React.Component {
     axios
       .get('items/savedProduct')
       .then(results => {
+        if (results.data.length > 12) {
+          results.data = results.data.slice(-12);
+        }
         let reversedResults = results.data.reverse();
         this.setState({
           pastItems: reversedResults,
@@ -187,6 +192,27 @@ class App extends React.Component {
     });
   }
 
+  setCurrQuickView(e) {
+    let imageURL = e.target.dataset.imageurl;
+    let categoryName = e.target.dataset.categoryname;
+    let productID = e.target.dataset.productid;
+    let name = e.target.dataset.name;
+    let price = e.target.dataset.price;
+
+    this.setState(
+      {
+        currQuickView: {
+          imageURL,
+          categoryName,
+          productID,
+          name,
+          price,
+        },
+      },
+      this.openModal,
+    );
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -216,13 +242,17 @@ class App extends React.Component {
                 Recently viewed items
               </span>
             </div>
-            <QuickView modal={this.state.visible} closeModal={this.closeModal} />
+            <QuickView
+              data={this.state.currQuickView}
+              modal={this.state.visible}
+              closeModal={this.closeModal}
+            />
             <RelatedItems
               relatedProducts={
                 this.state.viewHistory ? this.state.pastItems : this.state.relatedItems
               }
               func={this.changeCurrentProduct}
-              openModal={this.openModal}
+              setQuickView={this.setCurrQuickView}
             />
           </div>
         </div>

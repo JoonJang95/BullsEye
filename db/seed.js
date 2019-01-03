@@ -30,7 +30,7 @@ const productsData = (function data() {
         name: 'Apple iPad Pro 10.5" Wi-Fi Only (2017 Model)',
         price: 699.99,
         imageURL:
-          'https://target.scene7.com/is/image/Target/54081265?wid=250&hei=250&qlt=80&fmt=webp',
+          'https://target.scene7.com/is/image/Target/52652493?wid=250&hei=250&qlt=80&fmt=webp',
       },
       {
         name:
