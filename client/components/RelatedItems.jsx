@@ -30,6 +30,10 @@ class RelatedItems extends React.Component {
     $('#relatedItemsList').scrollTo(0, 425);
   }
 
+  getQuickView() {
+    console.log('clicked!!!!');
+  }
+
   render() {
     return (
       <div id="recommendationsProducts">
@@ -68,6 +72,10 @@ class RelatedItems extends React.Component {
                     data-productid={item.id}
                     onClick={this.props.func}
                   />
+                  <div class="quickView" onClick={this.getQuickView}>
+                    Quick Shop
+                  </div>
+                  <div class="whiteBox">.</div>
                   <div class="productInformation">
                     <b class="itemPrice">${item.price}</b>
                     {item.categoryName === 'appleTablets' ? <AppleProduct /> : <NonAppleProduct />}

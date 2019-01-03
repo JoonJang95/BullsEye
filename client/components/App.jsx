@@ -66,8 +66,9 @@ class App extends React.Component {
       .get('items/savedProduct')
       .then(results => {
         console.log('old items history', results);
+        let reversedResults = results.data.reverse();
         this.setState({
-          pastItems: results.data,
+          pastItems: reversedResults,
         });
       })
       .catch(err => {
@@ -117,6 +118,7 @@ class App extends React.Component {
         });
 
         this.saveCurrProduct(this.state.currProduct);
+        this.getRelatedItems();
       })
       .catch(err => {
         console.log(

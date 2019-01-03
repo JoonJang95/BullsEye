@@ -110,6 +110,40 @@ li {
   border-bottom: 0.3px solid;
 }
 
+/* quick View */
+.quickView {
+  z-index: 10;
+  font-family: Helvetica, sans-serif;
+  background-color: transparent;
+  position: relative;
+  bottom: 33px;
+  margin-bottom: -20px;
+  display: none;
+  letter-spacing: 1px;
+  font-weight: lighter;
+  font-size: 13px;
+}
+
+.whiteBox {
+  color: white;
+  margin-bottom: -20px;
+}
+
+.imageRows:hover > .whiteBox {
+  background-color: #f5b5b5;
+  color: white;
+  opacity: 0.75;
+  position: relative;
+  bottom: 35.5px;
+  margin-bottom: -20px;
+  height: 28px;
+}
+
+.imageRows:hover > .quickView {
+  display: block;
+  margin-bottom: -20px;
+}
+
 /* text styling */
 
 b,
