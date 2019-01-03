@@ -1,6 +1,7 @@
 import React from 'react';
 import Accessories from './Accessories.jsx';
 import RelatedItems from './RelatedItems.jsx';
+import QuickView from './QuickView.jsx';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -20,12 +21,15 @@ class App extends React.Component {
       relatedItems: [],
       viewHistory: false,
       pastItems: [],
+      visible: false,
     };
 
     this.shuffleRelatedItems = this.shuffleRelatedItems.bind(this);
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
     this.getViewHistory = this.getViewHistory.bind(this);
     this.getRelatedItems = this.getRelatedItems.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount() {
@@ -65,7 +69,6 @@ class App extends React.Component {
     axios
       .get('items/savedProduct')
       .then(results => {
-        console.log('old items history', results);
         let reversedResults = results.data.reverse();
         this.setState({
           pastItems: reversedResults,
@@ -96,11 +99,15 @@ class App extends React.Component {
   }
 
   changeCurrentProduct(e) {
-    let clickedURL = e.target.src;
+    let clickedURL = e.target.dataset.imageurl;
     let categoryNameData = e.target.dataset.categoryname;
     let productID = e.target.dataset.productid;
     let name = e.target.dataset.name;
     let price = e.target.dataset.price;
+
+    console.log(e.target);
+
+    console.log('heyyyy', e.target.dataset.price);
 
     axios
       .get(`/items/changeProduct/${e.target.dataset.categoryname}`)
@@ -168,6 +175,18 @@ class App extends React.Component {
     });
   }
 
+  openModal() {
+    this.setState({
+      visible: true,
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      visible: false,
+    });
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -197,11 +216,13 @@ class App extends React.Component {
                 Recently viewed items
               </span>
             </div>
+            <QuickView modal={this.state.visible} closeModal={this.closeModal} />
             <RelatedItems
               relatedProducts={
                 this.state.viewHistory ? this.state.pastItems : this.state.relatedItems
               }
               func={this.changeCurrentProduct}
+              openModal={this.openModal}
             />
           </div>
         </div>

@@ -12,7 +12,7 @@
   border-top-color: #dddddd;
   display: grid;
   grid-template-rows: 245px 300px;
-  width: 855px;
+  width: 882px;
   margin: 0px auto;
   text-align: center;
 }
@@ -44,6 +44,7 @@ sup {
 /* Product images (both accessories & related)*/
 img {
   height: 115px;
+  width: 115px;
 }
 
 ul {
@@ -57,9 +58,9 @@ ul {
 
 li {
   list-style: none;
-  display: inline-flex;
-  text-align: center;
-  margin-right: 7px;
+  display: inline-grid;
+  place-items: center;
+  margin-right: 5px;
 }
 
 /* Related items component */
@@ -100,6 +101,17 @@ li {
   padding-bottom: 25px;
 }
 
+.productName {
+  width: 133px;
+}
+
+.imageRows {
+  margin-top: 10px;
+  height: 157px;
+  width: 140px;
+  margin-right: -5px;
+}
+
 .imageRows:hover,
 .imageRows:hover > .productInformation {
   cursor: pointer;
@@ -112,36 +124,46 @@ li {
 
 /* quick View */
 .quickView {
-  z-index: 10;
+  z-index: 11;
   font-family: Helvetica, sans-serif;
   background-color: transparent;
   position: relative;
-  bottom: 33px;
-  margin-bottom: -20px;
+  width: 120px;
+  height: 28px;
+  margin-bottom: -25px;
   display: none;
   letter-spacing: 1px;
   font-weight: lighter;
   font-size: 13px;
+  bottom: 32px;
+  line-height: 25px;
+  text-align: center;
+  vertical-align: middle;
+  left: 10.25px;
 }
 
 .whiteBox {
-  color: white;
-  margin-bottom: -20px;
-}
-
-.imageRows:hover > .whiteBox {
-  background-color: #f5b5b5;
-  color: white;
-  opacity: 0.75;
+  background-color: #ffbfbf;
+  color: #ffbfbf;
+  opacity: 0.85;
+  display: none;
   position: relative;
   bottom: 35.5px;
-  margin-bottom: -20px;
-  height: 28px;
+  margin-bottom: -25px;
+  height: 23px;
+  width: 115px;
+  bottom: 35px;
+  z-index: 7;
+  left: 12px;
 }
 
 .imageRows:hover > .quickView {
   display: block;
-  margin-bottom: -20px;
+}
+
+.imageRows:hover > .whiteBox {
+  display: block;
+  text-align: center;
 }
 
 /* text styling */
@@ -179,11 +201,11 @@ b,
 }
 
 .scrollDiv1 {
-  margin-right: 7px;
+  margin-right: 3px;
 }
 
 .scrollDiv2 {
-  margin-left: 7px;
+  margin-left: 3px;
 }
 
 .scrollButton {
@@ -193,6 +215,8 @@ b,
   width: 23px;
   border-color: transparent;
   color: transparent;
+  text-align: center;
+  line-height: 0px;
 }
 
 button:hover {

@@ -63,16 +63,23 @@ class RelatedItems extends React.Component {
 
             return (
               <li>
-                <div class="imageRows">
+                <div
+                  class="imageRows"
+                  data-imageurl={item.imageURL}
+                  data-categoryname={item.categoryName}
+                  data-price={item.price}
+                  data-name={item.name}
+                  data-productid={item.id}
+                >
                   <img
                     src={item.imageURL}
+                    data-imageurl={item.imageURL}
                     data-categoryname={item.categoryName}
                     data-price={item.price}
                     data-name={item.name}
                     data-productid={item.id}
-                    onClick={this.props.func}
                   />
-                  <div class="quickView" onClick={this.getQuickView}>
+                  <div class="quickView" onClick={this.getQuickView} onClick={this.props.openModal}>
                     Quick Shop
                   </div>
                   <div class="whiteBox">.</div>
