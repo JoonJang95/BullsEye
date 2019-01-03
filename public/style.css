@@ -251,27 +251,39 @@ button:focus {
 
 .modalNameWrapper {
   grid-column: 1/4;
-  margin-top: 10px;
+  grid-row: 1/2;
+  margin-top: 4px;
   font-family: sans-serif;
-  font-size: 16px;
-  display: flex;
+  font-size: 15px;
+  display: inline-flex;
   flex-direction: column;
   text-align: left;
   position: relative;
   right: -17px;
-  bottom: -12px;
+  bottom: -6px;
   margin-right: 2px;
-  overflow: hidden;
-  flex-wrap: wrap;
   width: 475px;
+  height: auto;
+}
+
+.modalURL {
+  font-size: 9.5px;
+  font-family: Helvetica, sans-serif;
+  font-weight: lighter;
+  margin-bottom: 14px;
+  margin-left: -0.75px;
+}
+
+.modalURL > span {
+  text-decoration: underline;
 }
 
 .modalFullDetails {
   text-decoration: underline;
-  font-size: 9.5px;
+  font-size: 10px;
   font-family: Helvetica, sans-serif;
   font-weight: light;
-  margin-top: 6.5px;
+  margin-top: 7.25px;
 }
 
 .modalCarousel {
@@ -290,6 +302,8 @@ button:focus {
   right: -20px;
 }
 
+/* Modal Info Column Section */
+
 .modalInfoColumn {
   grid-column: 4;
   grid-row: 1/19;
@@ -303,16 +317,50 @@ button:focus {
   overflow: hidden;
 }
 
+.modalCloseButton {
+  color: rgb(163, 177, 198);
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-size: 1.15em;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  right: -183px;
+  top: -79px;
+}
+
+.modalCloseButton:hover {
+  cursor: pointer;
+}
+
 .modalPrice {
   font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Helvetica, sans-serif;
   font-size: 15.5px;
+  position: relative;
+  top: -75px;
+  left: 15px;
 }
 
 .modalStarRating {
   position: relative;
-  right: -15.25px;
-  bottom: -20px;
+  top: -72px;
+  left: 13px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.modalRatingText {
+  font-family: Helvetica, sans-serif;
+  font-size: 8.65px;
+  font-weight: lighter;
+  margin-left: 5px;
+  line-height: 19.995px;
+  letter-spacing: 0.3px;
+}
+
+.modalRatingText:hover {
+  cursor: pointer;
 }
 
 .modalColorSection {

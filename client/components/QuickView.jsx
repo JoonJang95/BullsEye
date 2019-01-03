@@ -17,12 +17,15 @@ class QuickView extends React.Component {
       <Modal
         visible={this.props.modal}
         width="715"
-        height="487.5"
+        height="500"
         effect="fadeInUp"
         onClickAway={() => this.props.closeModal()}
       >
         <div class="modalWrapper">
           <div class="modalNameWrapper">
+            <div class="modalURL">
+              <span>Target</span> / <span>Electronics</span> / <span>Tablets & E-Readers</span>
+            </div>
             <div class="modalName">
               {productData.name}
               <div class="modalFullDetails">Get full product details</div>
@@ -32,6 +35,9 @@ class QuickView extends React.Component {
             <img class="modalImage" src={productData.imageURL} />
           </div>
           <div class="modalInfoColumn">
+            <div class="modalCloseButton" onClick={this.props.closeModal}>
+              X
+            </div>
             <div class="modalPrice">${productData.price}</div>
             <div class="modalStarRating">
               <StarRating />
