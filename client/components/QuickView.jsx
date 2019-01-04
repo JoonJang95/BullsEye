@@ -44,17 +44,14 @@ class QuickView extends React.Component {
               <span class="modalRatingText">1786 | 91 Questions</span>
             </div>
             <div class="modalWarrantyText">
-              <div class="modalCheckBox"> . </div>
-              <div class="modalWarrantyInfo">
-                2 year Target + SquareTrade Tablets
-                <br />
-                Protection Plan with Accidental
-                <br />
-                Damage Coverage
-              </div>
-              <span class="modalWarrantyPrice">$80.00</span>
-              <span class="modalPlanDetails">See plan details</span>
+              <label class="modalWarrantyDescription">
+                2 year Target + SquareTrade Tablets Protection Plan with Accidental Damage Coverage
+                <input type="checkbox" class="modalWarrantyCheckBox" />
+                <span class="modalCheckmark" />
+              </label>
             </div>
+            <span class="modalWarrantyPrice">$80.00</span>
+            <span class="modalPlanDetails">See plan details</span>
 
             <div class="modalColorSection">
               <div class="modalColorText">Color: ...</div>
@@ -83,7 +80,7 @@ class QuickView extends React.Component {
             </div>
             <div class="modalQuantitySelect">
               <form>
-                <label class="modalLabel">
+                <label class="modalQuantity">
                   Quantity:{'   '}
                   <select class="modalSelectOptions">
                     <option value="1">1</option>

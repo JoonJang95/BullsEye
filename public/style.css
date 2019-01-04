@@ -133,7 +133,7 @@ li {
   background-color: transparent;
   position: relative;
   width: 120px;
-  height: 28px;
+  height: 25px;
   margin-bottom: -25px;
   display: none;
   letter-spacing: 1px;
@@ -147,16 +147,16 @@ li {
 }
 
 .whiteBox {
-  background-color: #ffbfbf;
-  color: #ffbfbf;
+  background-color: #f47c7cf5;
+  color: #f47c7cf5;
   opacity: 0.85;
   display: none;
   position: relative;
   bottom: 35.5px;
   margin-bottom: -25px;
-  height: 23px;
+  height: 25px;
   width: 115px;
-  bottom: 35px;
+  bottom: 32px;
   z-index: 7;
   left: 12px;
 }
@@ -325,7 +325,7 @@ button:focus {
   text-align: center;
   position: relative;
   right: -183px;
-  top: -79px;
+  top: -110px;
 }
 
 .modalCloseButton:hover {
@@ -337,13 +337,13 @@ button:focus {
   font-family: Helvetica, sans-serif;
   font-size: 15.5px;
   position: relative;
-  top: -75px;
+  top: -95px;
   left: 15px;
 }
 
 .modalStarRating {
   position: relative;
-  top: -72px;
+  top: -92px;
   left: 13px;
   display: flex;
   justify-content: center;
@@ -359,8 +359,81 @@ button:focus {
   letter-spacing: 0.3px;
 }
 
-.modalRatingText:hover {
+.modalRatingText:hover,
+.modalStarRating:hover {
   cursor: pointer;
+}
+
+.modalWarrantyText {
+  display: block;
+  position: relative;
+  top: -65px;
+  padding-left: 35px;
+  cursor: pointer;
+  font-family: Helvetica;
+  font-size: 11px;
+  font-weight: 349;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.modalWarrantyText input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.modalWarrantyDescription {
+  display: block;
+  cursor: pointer;
+  text-align: start;
+}
+
+.modalCheckmark {
+  position: absolute;
+  top: 0px;
+  left: 14.5px;
+  height: 12.5px;
+  width: 12.5px;
+  border-radius: 3px;
+  background-color: #dddddd;
+}
+
+.modalWarrantyText:hover input ~ .modalCheckmark {
+  background-color: #ccc;
+}
+
+.modalWarrantyText input:checked ~ .modalCheckmark {
+  background-color: #ff5653;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.modalCheckmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.modalWarrantyText input:checked ~ .modalCheckmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.modalWarrantyText .modalCheckmark:after {
+  left: 4.25px;
+  top: 0px;
+  width: 3px;
+  height: 8px;
+  border: solid 0.15px white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .modalColorSection {
@@ -369,7 +442,7 @@ button:focus {
 .modalQuantitySelect {
 }
 
-.modalLabel {
+.modalQuantity {
   font-family: sans-serif;
   font-weight: lighter;
   font-size: 11px;
