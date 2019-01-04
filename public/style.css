@@ -98,12 +98,12 @@ li {
 }
 
 #relatedItemsList {
-  padding-bottom: 12px;
+  padding-bottom: 17px;
   overflow-x: hidden;
 }
 
 #recommendationsProducts:hover > #relatedItemsList {
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 .productName {
