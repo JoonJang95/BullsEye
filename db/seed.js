@@ -1,9 +1,7 @@
 const faker = require('faker');
-const { db } = require('./index.js');
-const { ViewHistory } = require('./index.js');
-const { Products } = require('./index.js');
-const { Categories } = require('./index.js');
-const { Accessories } = require('./index.js');
+const {
+  db, Accessories, Categories, Products, ViewHistory,
+} = require('./index.js');
 
 const categoriesData = (function data() {
   const categories = ['appleTablets', 'non_Apple_Tablets', 'random'];

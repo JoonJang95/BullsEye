@@ -54,28 +54,32 @@ class QuickView extends React.Component {
             <span class="modalPlanDetails">See plan details</span>
 
             <div class="modalColorSection">
-              <div class="modalColorText">Color: ...</div>
+              <div class="modalColorText">
+                Color: <span>Space Gray</span>
+              </div>
               <div class="modalColorSelect">
-                <span id="modalColorOption1" class="modalColorOption">
+                <div id="modalColorOption1" class="modalColorOption">
                   .
-                </span>
-                <span id="modalColorOption2" class="modalColorOption">
+                </div>
+                <div id="modalColorOption2" class="modalColorOption">
                   .
-                </span>
-                <span id="modalColorOption3" class="modalColorOption">
+                </div>
+                <div id="modalColorOption3" class="modalColorOption">
                   .
-                </span>
+                </div>
               </div>
             </div>
             <div class="modalSizeSection">
-              <div class="modalSizeText">Size ...</div>
+              <div class="modalSizeText">
+                Size: <span>128GB</span>
+              </div>
               <div class="modalSizeSelect">
-                <span id="modalSizeOption1" class="modalSizeSelect">
-                  .
-                </span>
-                <span id="modalSizeOption2" class="modalSizeSelect">
-                  .
-                </span>
+                <div id="modalSizeOption1" class="modalSizeOption">
+                  32GB
+                </div>
+                <div id="modalSizeOption2" class="modalSizeOption">
+                  128GB
+                </div>
               </div>
             </div>
             <div class="modalQuantitySelect">
@@ -92,8 +96,8 @@ class QuickView extends React.Component {
               </form>
             </div>
             <div class="modalCheckOutButtons">
-              <button>Add to Cart</button>
-              <button>WishList</button>
+              <div id="modalCartButton">Add to Cart</div>
+              <div id="modalWishButton">WishList</div>
             </div>
             <div class="modalFeedbackText">
               <div>Help us improve this page</div>

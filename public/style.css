@@ -136,8 +136,8 @@ li {
   height: 25px;
   margin-bottom: -25px;
   display: none;
-  letter-spacing: 1px;
-  font-weight: lighter;
+  letter-spacing: 0.5px;
+  font-weight: 365;
   font-size: 13px;
   bottom: 32px;
   line-height: 25px;
@@ -147,18 +147,19 @@ li {
 }
 
 .whiteBox {
-  background-color: #f47c7cf5;
-  color: #f47c7cf5;
+  background-color: #fac183;
+  color: #fac183;
   opacity: 0.85;
   display: none;
   position: relative;
   bottom: 35.5px;
   margin-bottom: -25px;
   height: 25px;
-  width: 115px;
+  width: 90px;
   bottom: 32px;
   z-index: 7;
-  left: 12px;
+  left: 24px;
+  border-radius: 3px;
 }
 
 .imageRows:hover > .quickView {
@@ -276,6 +277,7 @@ button:focus {
 
 .modalURL > span {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .modalFullDetails {
@@ -325,7 +327,7 @@ button:focus {
   text-align: center;
   position: relative;
   right: -183px;
-  top: -110px;
+  top: -102px;
 }
 
 .modalCloseButton:hover {
@@ -337,17 +339,16 @@ button:focus {
   font-family: Helvetica, sans-serif;
   font-size: 15.5px;
   position: relative;
-  top: -95px;
+  top: -60px;
   left: 15px;
 }
 
 .modalStarRating {
   position: relative;
-  top: -92px;
-  left: 13px;
-  display: flex;
-  justify-content: center;
-  align-content: center;
+  top: -57px;
+  left: 14px;
+  overflow: auto;
+  display: inline-block;
 }
 
 .modalRatingText {
@@ -355,7 +356,9 @@ button:focus {
   font-size: 8.65px;
   font-weight: lighter;
   margin-left: 5px;
-  line-height: 19.995px;
+  height: 25px;
+  position: relative;
+  top: -1.65px;
   letter-spacing: 0.3px;
 }
 
@@ -367,16 +370,17 @@ button:focus {
 .modalWarrantyText {
   display: block;
   position: relative;
-  top: -65px;
+  top: -41.25px;
   padding-left: 35px;
   cursor: pointer;
   font-family: Helvetica;
   font-size: 11px;
-  font-weight: 349;
+  font-weight: 335;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  overflow: auto;
 }
 
 .modalWarrantyText input {
@@ -395,7 +399,7 @@ button:focus {
 
 .modalCheckmark {
   position: absolute;
-  top: 0px;
+  top: 1px;
   left: 14.5px;
   height: 12.5px;
   width: 12.5px;
@@ -426,7 +430,7 @@ button:focus {
 /* Style the checkmark/indicator */
 .modalWarrantyText .modalCheckmark:after {
   left: 4.25px;
-  top: 0px;
+  top: 1px;
   width: 3px;
   height: 8px;
   border: solid 0.15px white;
@@ -436,10 +440,126 @@ button:focus {
   transform: rotate(45deg);
 }
 
+.modalWarrantyPrice {
+  position: relative;
+  top: -37px;
+  right: -35px;
+  font-size: 13.25px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 549.95;
+}
+
+.modalPlanDetails {
+  position: relative;
+  top: -49px;
+  right: -80px;
+  font-size: 9px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 340;
+  border-bottom: solid 0.4px;
+  padding-bottom: 0px;
+  cursor: pointer;
+  letter-spacing: 0.15px;
+}
+
 .modalColorSection {
+  position: relative;
+  top: -25px;
+  right: -48.25px;
+  font-size: 13px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 555;
+}
+
+.modalColorText > span {
+  font-size: 11.5px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 350;
+}
+
+.modalColorSelect {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.modalColorSelect > div {
+  border: solid 0.5px #c4c4c4;
+  height: 25px;
+  width: 25px;
+  margin: 3px;
+  margin-top: 4px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#modalColorOption1 {
+  background-color: #7fdbff;
+  color: #7fdbff;
+}
+
+#modalColorOption2 {
+  background-color: #ffdc00;
+  color: #ffdc00;
+}
+
+#modalColorOption3 {
+  background-color: #01ff70;
+  color: #01ff70;
+}
+
+#modalColorOption1:hover,
+#modalColorOption2:hover,
+#modalColorOption3:hover {
+  opacity: 0.55;
+}
+
+.modalSizeSection {
+  position: relative;
+  font-size: 13px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 555;
+  top: -7px;
+  left: 44.5px;
+}
+
+.modalSizeText > span {
+  font-size: 12.5px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 350;
+}
+
+.modalSizeSelect {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.modalSizeSelect > div {
+  border: solid 0.5px #949494;
+  cursor: pointer;
+  margin: 4px;
+  padding: 5px 7px 5px 7px;
+  border-radius: 4px;
+  margin-top: 5px;
+  font-family: arial;
+  font-size: 11px;
+  font-weight: 345;
+  letter-spacing: 0.5px;
+}
+
+#modalSizeOption1:hover,
+#modalSizeOption2:hover {
+  background-color: #ff5653;
+  opacity: 0.9;
+  color: white;
+  font-weight: 600;
 }
 
 .modalQuantitySelect {
+  position: relative;
+  top: 25px;
+  left: 10px;
+  margin-bottom: 20px;
 }
 
 .modalQuantity {
@@ -451,9 +571,10 @@ button:focus {
 .modalSelectOptions {
   display: inline-flex;
   justify-content: center;
-  width: 32px;
+  width: 37px;
   font-size: 10px;
-  padding-left: 8px;
+  font-weight: 350;
+  padding-left: 9px;
   padding-bottom: 0.25px;
   border: 1px solid #ccc;
   height: 17px;
@@ -466,6 +587,51 @@ button:focus {
 
 .modalSelectOptions:focus {
   outline: none;
+}
+
+.modalCheckOutButtons {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  top: 30px;
+}
+
+.modalCheckOutButtons > div {
+  border: solid 0.5px #949494;
+  cursor: pointer;
+  margin: 7px;
+  padding: 5px 7px 5px 7px;
+  border-radius: 4px;
+  margin-top: 5px;
+  font-family: arial;
+  font-size: 11px;
+  font-weight: 345;
+  letter-spacing: 0.5px;
+  width: 120px;
+  position: relative;
+  left: 27px;
+}
+
+#modalCartButton:hover,
+#modalWishButton:hover {
+  background-color: #6d6d6db6;
+  opacity: 0.8;
+  font-weight: 600;
+}
+
+.modalFeedbackText {
+  position: relative;
+  bottom: -60px;
+  font-family: Helvetica, sans-serif;
+  font-size: 9px;
+  text-decoration: underline;
+  font-weight: 345;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  cursor: pointer;
 }
 
 .modalProductDetails {

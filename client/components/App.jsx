@@ -1,8 +1,8 @@
 import React from 'react';
-import Accessories from './Accessories.jsx';
-import RelatedItems from './RelatedItems.jsx';
-import QuickView from './QuickView.jsx';
 import axios from 'axios';
+import Accessories from './Accessories.jsx';
+import QuickView from './QuickView.jsx';
+import RelatedItems from './RelatedItems.jsx';
 
 class App extends React.Component {
   constructor() {
