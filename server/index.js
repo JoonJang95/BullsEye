@@ -1,6 +1,7 @@
 const express = require('express');
 
 const app = express();
+const path = require('path');
 const bodyParser = require('body-parser');
 const db = require('../db/index.js');
 
@@ -8,8 +9,9 @@ const db = require('../db/index.js');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static(`${__dirname}/../public`));
-
+app.use(express.static(path.join(__dirname, '../public')));
+// app.use('/', express.static('./public/'));
+// app.use(/\/\d+\//, express.static('./public/'));
 /* Request Handling */
 
 // Get initial current product accessories
@@ -77,6 +79,44 @@ app.get('/items/changeProduct/:categoryName', (req, res) => {
         error,
       );
       res.sendStatus(404);
+    });
+});
+
+// Get past viewed items from db
+
+app.get('/items/savedProduct', (req, res) => {
+  db.ViewHistory.findAll()
+    .then((results) => {
+      res.status(200).json(results);
+    })
+    .catch((error) => {
+      console.log('There was an error getting pastItems from the DB: ', error);
+      res.sendStatus(404);
+    });
+});
+
+// save currentProduct to viewHistory db
+
+app.post('/items/saveProduct', (req, res) => {
+  console.log(req.body);
+  db.ViewHistory.findOrCreate({
+    where: {
+      id: req.body.productID,
+    },
+    defaults: {
+      name: req.body.name,
+      productID: req.body.productID,
+      price: req.body.price,
+      imageURL: req.body.imageURL,
+      categoryName: req.body.categoryName,
+    },
+  })
+    .spread(() => {
+      res.status(201).json(req.body);
+    })
+    .catch((error) => {
+      console.log('There was an error posting pastItems to the DB: ', error);
+      res.sendStatus(501);
     });
 });
 

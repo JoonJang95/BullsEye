@@ -1,5 +1,4 @@
 /* Mock Data */
-
 #MockData {
   display: grid;
   place-items: center;
@@ -12,7 +11,7 @@
   border-top-color: #dddddd;
   display: grid;
   grid-template-rows: 245px 300px;
-  width: 848px;
+  width: 882px;
   margin: 0px auto;
   text-align: center;
 }
@@ -44,6 +43,7 @@ sup {
 /* Product images (both accessories & related)*/
 img {
   height: 115px;
+  width: 115px;
 }
 
 ul {
@@ -51,15 +51,16 @@ ul {
   white-space: nowrap;
   margin: auto;
   padding-top: 11.5px;
-  overflow: auto;
+  overflow: hidden;
   padding-left: 0px;
 }
 
 li {
   list-style: none;
-  display: inline-flex;
-  text-align: center;
-  margin-right: 7px;
+  display: inline-grid;
+  place-items: center;
+  margin-right: 5px;
+  line-height: normal;
 }
 
 /* Related items component */
@@ -92,12 +93,28 @@ li {
   border-bottom-width: thin;
   border-bottom-color: #dddddd;
   margin-top: 5px;
-  overflow: auto;
+  overflow: hidden;
   display: flex;
 }
 
 #relatedItemsList {
-  padding-bottom: 25px;
+  padding-bottom: 17px;
+  overflow-x: hidden;
+}
+
+#recommendationsProducts:hover > #relatedItemsList {
+  overflow-x: auto;
+}
+
+.productName {
+  width: 133px;
+}
+
+.imageRows {
+  margin-top: 10px;
+  height: 157px;
+  width: 140px;
+  margin-right: -7px;
 }
 
 .imageRows:hover,
@@ -105,9 +122,57 @@ li {
   cursor: pointer;
 }
 
-.imageRows:hover > .productInformation > .productName,
+.imageRows:hover > .productInformation > .appleName,
 .imageRows:hover > .productInformation > .itemPrice {
   border-bottom: 0.3px solid;
+}
+
+.imageRows:hover > .productInformation > .nonAppleName {
+  text-decoration: underline;
+}
+
+/* quick View */
+.quickView {
+  z-index: 11;
+  font-family: Helvetica, sans-serif;
+  background-color: transparent;
+  position: relative;
+  width: 120px;
+  height: 25px;
+  margin-bottom: -25px;
+  display: none;
+  letter-spacing: 0.5px;
+  font-weight: 365;
+  font-size: 13px;
+  bottom: 32px;
+  line-height: 25px;
+  text-align: center;
+  vertical-align: middle;
+  left: 10.25px;
+}
+
+.whiteBox {
+  background-color: #fac183;
+  color: #fac183;
+  opacity: 0.85;
+  display: none;
+  position: relative;
+  bottom: 35.5px;
+  margin-bottom: -25px;
+  height: 25px;
+  width: 90px;
+  bottom: 32px;
+  z-index: 7;
+  left: 24px;
+  border-radius: 3px;
+}
+
+.imageRows:hover > .quickView {
+  display: block;
+}
+
+.imageRows:hover > .whiteBox {
+  display: block;
 }
 
 /* text styling */
@@ -145,11 +210,11 @@ b,
 }
 
 .scrollDiv1 {
-  margin-right: 7px;
+  margin-right: 3px;
 }
 
 .scrollDiv2 {
-  margin-left: 7px;
+  margin-left: 3px;
 }
 
 .scrollButton {
@@ -159,11 +224,14 @@ b,
   width: 23px;
   border-color: transparent;
   color: transparent;
+  text-align: center;
+  line-height: 0px;
 }
 
 button:hover {
   cursor: pointer;
 }
+
 button:focus {
   outline: 0;
 }
@@ -178,3 +246,445 @@ button:focus {
   width: 5px;
   margin-right: 6px;
 } */
+
+/* Modal Styling */
+
+.modalWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.2fr;
+  grid-auto-rows: minmax(25px, auto);
+  height: 100%;
+}
+
+.modalNameWrapper {
+  grid-column: 1/4;
+  grid-row: 1/2;
+  margin-top: 4px;
+  font-family: sans-serif;
+  font-size: 15px;
+  display: inline-flex;
+  flex-direction: column;
+  text-align: left;
+  position: relative;
+  right: -17px;
+  bottom: -6px;
+  margin-right: 2px;
+  width: 475px;
+  height: auto;
+}
+
+.modalURL {
+  font-size: 9.5px;
+  font-family: Helvetica, sans-serif;
+  font-weight: lighter;
+  margin-bottom: 14px;
+  margin-left: -0.75px;
+}
+
+.modalURL > span {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.modalFullDetails {
+  text-decoration: underline;
+  font-size: 10px;
+  font-family: Helvetica, sans-serif;
+  font-weight: light;
+  margin-top: 7.25px;
+}
+
+.modalCarousel {
+  grid-row: 2/13;
+  grid-column: 1/4;
+}
+
+.sliderWrapper {
+  height: 100%;
+  text-align: center;
+  position: relative;
+  bottom: -60px;
+}
+
+.sliderWrapper div:focus {
+  outline: 0;
+}
+
+.sliderWrapper div > img {
+  display: block;
+  margin: auto;
+  height: 170px;
+  width: 170px;
+}
+
+/* Modal Info Column Section */
+
+.modalInfoColumn {
+  grid-column: 4;
+  grid-row: 1/19;
+  height: auto;
+  border-left: solid 0.5px #dddddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.modalCloseButton {
+  color: rgb(163, 177, 198);
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-size: 1.15em;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  right: -185px;
+  top: -72px;
+}
+
+.modalCloseButton:hover {
+  cursor: pointer;
+}
+
+.modalPrice {
+  font-weight: bold;
+  font-family: Helvetica, sans-serif;
+  font-size: 15.5px;
+  position: relative;
+  top: -60px;
+  left: 15px;
+}
+
+.modalStarRating {
+  position: relative;
+  top: -57px;
+  left: 14px;
+  overflow: auto;
+  display: inline-block;
+}
+
+.modalRatingText {
+  font-family: Helvetica, sans-serif;
+  font-size: 8.65px;
+  font-weight: lighter;
+  margin-left: 5px;
+  height: 25px;
+  position: relative;
+  top: -1.65px;
+  letter-spacing: 0.3px;
+}
+
+.modalRatingText:hover,
+.modalStarRating:hover {
+  cursor: pointer;
+}
+
+.modalWarrantyText {
+  display: block;
+  position: relative;
+  top: -41.25px;
+  padding-left: 35px;
+  cursor: pointer;
+  font-family: Helvetica;
+  font-size: 11px;
+  font-weight: 335;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: auto;
+}
+
+.modalWarrantyText input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.modalWarrantyDescription {
+  display: block;
+  cursor: pointer;
+  text-align: start;
+}
+
+.modalCheckmark {
+  position: absolute;
+  top: 1px;
+  left: 14.5px;
+  height: 12.5px;
+  width: 12.5px;
+  border-radius: 3px;
+  background-color: #dddddd;
+}
+
+.modalWarrantyText:hover input ~ .modalCheckmark {
+  background-color: #ccc;
+}
+
+.modalWarrantyText input:checked ~ .modalCheckmark {
+  background-color: #ff5653;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.modalCheckmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.modalWarrantyText input:checked ~ .modalCheckmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.modalWarrantyText .modalCheckmark:after {
+  left: 4.25px;
+  top: 1px;
+  width: 3px;
+  height: 8px;
+  border: solid 0.15px white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.modalWarrantyPrice {
+  position: relative;
+  top: -37px;
+  right: -35px;
+  font-size: 13.25px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 549.95;
+}
+
+.modalPlanDetails {
+  position: relative;
+  top: -49px;
+  right: -80px;
+  font-size: 9px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 340;
+  border-bottom: solid 0.4px;
+  padding-bottom: 0px;
+  cursor: pointer;
+  letter-spacing: 0.15px;
+}
+
+.modalColorSection {
+  position: relative;
+  top: -25px;
+  right: -48.75px;
+  font-size: 13px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 555;
+}
+
+.modalColorText > span {
+  font-size: 11.5px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 350;
+}
+
+.modalColorSelect {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.modalColorSelect > div {
+  border: solid 0.5px #c4c4c4;
+  height: 25px;
+  width: 25px;
+  margin: 3px;
+  margin-top: 4px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#modalColorOption1 {
+  background-color: #7fdbff;
+  color: #7fdbff;
+}
+
+#modalColorOption2 {
+  background-color: #ffdc00;
+  color: #ffdc00;
+}
+
+#modalColorOption3 {
+  background-color: #01ff70;
+  color: #01ff70;
+}
+
+#modalColorOption1:hover,
+#modalColorOption2:hover,
+#modalColorOption3:hover {
+  opacity: 0.55;
+}
+
+.modalSizeSection {
+  position: relative;
+  font-size: 13px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 555;
+  top: -7px;
+  left: 45px;
+}
+
+.modalSizeText > span {
+  font-size: 11.5px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 350;
+}
+
+.modalSizeSelect {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.modalSizeSelect > div {
+  border: solid 0.5px #949494;
+  cursor: pointer;
+  margin: 4px;
+  padding: 5px 7px 5px 7px;
+  border-radius: 4px;
+  margin-top: 5px;
+  font-family: arial;
+  font-size: 11px;
+  font-weight: 345;
+  letter-spacing: 0.5px;
+}
+
+#modalSizeOption1:hover,
+#modalSizeOption2:hover {
+  background-color: #ff5653;
+  opacity: 0.9;
+  color: white;
+  font-weight: 600;
+}
+
+.modalQuantitySelect {
+  position: relative;
+  top: 30px;
+  left: 15px;
+  margin-bottom: 20px;
+}
+
+.modalQuantity {
+  font-family: sans-serif;
+  font-weight: lighter;
+  font-size: 11px;
+}
+
+.modalSelectOptions {
+  display: inline-flex;
+  justify-content: center;
+  width: 37px;
+  font-size: 10px;
+  font-weight: 350;
+  padding-left: 9px;
+  padding-bottom: 0.25px;
+  border: 1px solid #ccc;
+  height: 17px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(https://www.brandeps.com/icon-download/S/Sort-02.svg) 95% /
+    40% no-repeat #eee;
+}
+
+.modalSelectOptions:focus {
+  outline: none;
+}
+
+.modalCheckOutButtons {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  top: 33px;
+}
+
+.modalCheckOutButtons > div {
+  border: solid 0.5px #949494;
+  cursor: pointer;
+  margin: 7px;
+  padding: 5px 7px 5px 7px;
+  border-radius: 4px;
+  margin-top: 5px;
+  font-family: arial;
+  font-size: 11px;
+  font-weight: 345;
+  letter-spacing: 0.5px;
+  width: 120px;
+  height: 30px;
+  position: relative;
+  left: 38.5px;
+  line-height: 21.95px;
+}
+
+#modalCartButton {
+  padding-left: 33px;
+  padding-right: 5px;
+  width: 75px;
+  height: 20px;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(https://cdn4.iconfinder.com/data/icons/shopping-21/64/shopping-06-512.png)
+    10% / 23% no-repeat white;
+}
+
+#modalWishButton {
+  padding-left: 15px;
+  padding-right: 0px;
+  width: 98px;
+  height: 20px;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(https://cdn2.iconfinder.com/data/icons/celebration-party/48/64-512.png)
+    18% / 13% no-repeat white;
+}
+
+#modalCartButton:hover,
+#modalWishButton:hover {
+  background-color: #ff5653;
+  opacity: 0.8;
+}
+
+.modalFeedbackText {
+  position: relative;
+  bottom: -60px;
+  font-family: Helvetica, sans-serif;
+  font-size: 9px;
+  text-decoration: underline;
+  font-weight: 345;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.modalProductDetails {
+  grid-row: 13/19;
+  grid-column: 1/4;
+  border-top: solid 0.5px #dddddd;
+  display: flex;
+  text-align: start;
+  font-family: Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: 350;
+}
+
+.modalProductDetails > p {
+  margin: 15px 6px 3px 15px;
+}

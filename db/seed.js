@@ -1,9 +1,7 @@
 const faker = require('faker');
-const { db } = require('./index.js');
-const { ViewHistory } = require('./index.js');
-const { Products } = require('./index.js');
-const { Categories } = require('./index.js');
-const { Accessories } = require('./index.js');
+const {
+  db, Accessories, Categories, Products, ViewHistory,
+} = require('./index.js');
 
 const categoriesData = (function data() {
   const categories = ['appleTablets', 'non_Apple_Tablets', 'random'];
@@ -30,7 +28,7 @@ const productsData = (function data() {
         name: 'Apple iPad Pro 10.5" Wi-Fi Only (2017 Model)',
         price: 699.99,
         imageURL:
-          'https://target.scene7.com/is/image/Target/54081265?wid=250&hei=250&qlt=80&fmt=webp',
+          'https://target.scene7.com/is/image/Target/52652493?wid=250&hei=250&qlt=80&fmt=webp',
       },
       {
         name:
@@ -216,9 +214,14 @@ db.sync({ force: true })
         .then(() => console.log('worked!'));
     });
 
-    // ORM.ViewHistory.create({
-    //   productID: 1,
-    // });
+    ViewHistory.create({
+      name: 'Apple iPad 9.7" Wi-Fi Only (2018 Model, 6th Generation)',
+      productID: 0,
+      price: '499.99',
+      imageURL:
+        'https://target.scene7.com/is/image/Target/GUEST_358cafbc-644b-46cd-a0e3-66b8a6763a75?wid=325&hei=325&qlt=80&fmt=webp',
+      categoryName: 'appleTablets',
+    });
   })
   .catch(() => {
     console.log('error with syncing seeds');

@@ -1,15 +1,18 @@
 import React from 'react';
-import Accessories from './Accessories.jsx';
-import RelatedItems from './RelatedItems.jsx';
-import ViewHistory from './ViewHistory.jsx';
 import axios from 'axios';
+import Accessories from './Accessories.jsx';
+import QuickView from './QuickView.jsx';
+import RelatedItems from './RelatedItems.jsx';
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      currProductImage: {
+      currProduct: {
+        productID: 0,
+        name: 'Apple iPad 9.7" Wi-Fi Only (2018 Model, 6th Generation)',
+        price: '499.99',
         imageURL:
           'https://target.scene7.com/is/image/Target/GUEST_358cafbc-644b-46cd-a0e3-66b8a6763a75?wid=325&hei=325&qlt=80&fmt=webp',
         categoryName: 'appleTablets',
@@ -17,27 +20,24 @@ class App extends React.Component {
       accessories: [],
       relatedItems: [],
       viewHistory: false,
-      pastItems: [
-        {
-          id: 0,
-          name: 'Apple iPad 9.7" Wi-Fi Only (2018 Model, 6th Generation)',
-          price: '499.99',
-          imageURL:
-            'https://target.scene7.com/is/image/Target/GUEST_358cafbc-644b-46cd-a0e3-66b8a6763a75?wid=325&hei=325&qlt=80&fmt=webp',
-          categoryName: 'appleTablets',
-        },
-      ],
+      pastItems: [],
+      visible: false,
+      currQuickView: {},
     };
 
     this.shuffleRelatedItems = this.shuffleRelatedItems.bind(this);
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
     this.getViewHistory = this.getViewHistory.bind(this);
     this.getRelatedItems = this.getRelatedItems.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.setCurrQuickView = this.setCurrQuickView.bind(this);
   }
 
   componentDidMount() {
     this.getInitialAccessories();
     this.getInitialRelatedItems();
+    this.getPastItems();
   }
 
   getInitialAccessories() {
@@ -57,6 +57,7 @@ class App extends React.Component {
     axios
       .get('/items/relatedItems/ipad')
       .then(results => {
+        console.log('related items', results);
         this.setState({
           relatedItems: this.shuffleRelatedItems(results.data),
         });
@@ -66,21 +67,70 @@ class App extends React.Component {
       });
   }
 
+  getPastItems() {
+    axios
+      .get('items/savedProduct')
+      .then(results => {
+        if (results.data.length > 12) {
+          results.data = results.data.slice(-12);
+        }
+        let reversedResults = results.data.reverse();
+        this.setState({
+          pastItems: reversedResults,
+        });
+      })
+      .catch(err => {
+        console.log('there was an error with the pastItems get request: ', err);
+      });
+  }
+
+  saveCurrProduct({ productID, name, price, imageURL, categoryName }) {
+    console.log(productID, name, price);
+    axios
+      .post('items/saveProduct', {
+        productID: productID,
+        name: name,
+        price: price,
+        imageURL: imageURL,
+        categoryName: categoryName,
+      })
+      .then(response => {
+        this.getPastItems();
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   changeCurrentProduct(e) {
-    let clickedURL = e.target.src;
+    let clickedURL = e.target.dataset.imageurl;
     let categoryNameData = e.target.dataset.categoryname;
+    let productID = e.target.dataset.productid;
+    let name = e.target.dataset.name;
+    let price = e.target.dataset.price;
+
+    console.log(e.target);
+
+    console.log('heyyyy', e.target.dataset.price);
 
     axios
       .get(`/items/changeProduct/${e.target.dataset.categoryname}`)
       .then(results => {
         this.setState({
-          currProductImage: {
+          currProduct: {
+            productID: productID,
+            name: name,
+            price: price,
             imageURL: clickedURL,
             categoryName: categoryNameData,
           },
           accessories: results.data.accessories,
           relatedItems: this.shuffleRelatedItems(results.data),
         });
+
+        this.saveCurrProduct(this.state.currProduct);
+        this.getRelatedItems();
       })
       .catch(err => {
         console.log(
@@ -96,13 +146,13 @@ class App extends React.Component {
     let randomProductsNum = Math.floor(Math.random() * 80);
     let relatedItemsList = [];
 
-    if (this.state.currProductImage.categoryName === 'appleTablets') {
+    if (this.state.currProduct.categoryName === 'appleTablets') {
       relatedItemsList = [
         ...data.appleProducts.slice(productsMin, productsMax),
         ...data.nonAppleProducts.slice(productsMin, productsMax),
         ...data.randomProducts.slice(randomProductsNum),
       ];
-    } else if (this.state.currProductImage.categoryName === 'non_Apple_Tablets') {
+    } else if (this.state.currProduct.categoryName === 'non_Apple_Tablets') {
       relatedItemsList = [
         ...data.nonAppleProducts.slice(productsMin, productsMax),
         ...data.appleProducts.slice(productsMin, productsMax),
@@ -130,13 +180,46 @@ class App extends React.Component {
     });
   }
 
+  openModal() {
+    this.setState({
+      visible: true,
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      visible: false,
+    });
+  }
+
+  setCurrQuickView(e) {
+    let imageURL = e.target.dataset.imageurl;
+    let categoryName = e.target.dataset.categoryname;
+    let productID = e.target.dataset.productid;
+    let name = e.target.dataset.name;
+    let price = e.target.dataset.price;
+
+    this.setState(
+      {
+        currQuickView: {
+          imageURL,
+          categoryName,
+          productID,
+          name,
+          price,
+        },
+      },
+      this.openModal,
+    );
+  }
+
   render() {
     return (
       <React.Fragment>
         <div id="MockData">
           <h1>Current Product</h1>
           <div id="MockImageData">
-            <img src={this.state.currProductImage.imageURL} />
+            <img src={this.state.currProduct.imageURL} />
           </div>
         </div>
         <div id="wrapper">
@@ -159,11 +242,17 @@ class App extends React.Component {
                 Recently viewed items
               </span>
             </div>
+            <QuickView
+              data={this.state.currQuickView}
+              modal={this.state.visible}
+              closeModal={this.closeModal}
+            />
             <RelatedItems
               relatedProducts={
                 this.state.viewHistory ? this.state.pastItems : this.state.relatedItems
               }
               func={this.changeCurrentProduct}
+              setQuickView={this.setCurrQuickView}
             />
           </div>
         </div>
