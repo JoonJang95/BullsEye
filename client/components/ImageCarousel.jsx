@@ -11,6 +11,7 @@ class SimpleSlider extends React.Component {
       infinite: true,
       speed: 500,
       slidesToShow: 1,
+      className: '.mainSlider',
       slidesToScroll: 1,
       adaptiveHeight: true,
       centerMode: true,

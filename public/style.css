@@ -51,7 +51,7 @@ ul {
   white-space: nowrap;
   margin: auto;
   padding-top: 11.5px;
-  overflow: auto;
+  overflow: hidden;
   padding-left: 0px;
 }
 
@@ -60,6 +60,7 @@ li {
   display: inline-grid;
   place-items: center;
   margin-right: 5px;
+  line-height: normal;
 }
 
 /* Related items component */
@@ -92,12 +93,17 @@ li {
   border-bottom-width: thin;
   border-bottom-color: #dddddd;
   margin-top: 5px;
-  overflow: auto;
+  overflow: hidden;
   display: flex;
 }
 
 #relatedItemsList {
-  padding-bottom: 25px;
+  padding-bottom: 12px;
+  overflow-x: hidden;
+}
+
+#recommendationsProducts:hover > #relatedItemsList {
+  overflow-x: scroll;
 }
 
 .productName {
@@ -225,6 +231,7 @@ b,
 button:hover {
   cursor: pointer;
 }
+
 button:focus {
   outline: 0;
 }
@@ -297,6 +304,10 @@ button:focus {
   text-align: center;
   position: relative;
   bottom: -60px;
+}
+
+.sliderWrapper div:focus {
+  outline: 0;
 }
 
 .sliderWrapper div > img {
