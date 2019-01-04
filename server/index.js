@@ -1,6 +1,7 @@
 const express = require('express');
 
 const app = express();
+const path = require('path');
 const bodyParser = require('body-parser');
 const db = require('../db/index.js');
 
@@ -8,9 +9,9 @@ const db = require('../db/index.js');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// app.use(express.static(`${__dirname}/../public`));
-app.use('/', express.static('./public/'));
-app.use(/\/\d+\//, express.static('./public/'));
+app.use(express.static(path.join(__dirname, '../public')));
+// app.use('/', express.static('./public/'));
+// app.use(/\/\d+\//, express.static('./public/'));
 /* Request Handling */
 
 // Get initial current product accessories

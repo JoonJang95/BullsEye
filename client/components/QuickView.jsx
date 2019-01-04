@@ -1,7 +1,8 @@
 import React from 'react';
 import Modal from 'react-awesome-modal';
-import StarRating from './StarRating.jsx';
 import ReactImageMagnify from 'react-image-magnify';
+import StarRating from './StarRating.jsx';
+import ImageCarousel from './ImageCarousel.jsx';
 
 class QuickView extends React.Component {
   constructor(props) {
@@ -10,8 +11,6 @@ class QuickView extends React.Component {
 
   render() {
     let productData = this.props.data;
-
-    console.log(productData);
 
     return (
       <Modal
@@ -32,7 +31,7 @@ class QuickView extends React.Component {
             </div>
           </div>
           <div class="modalCarousel">
-            <img class="modalImage" src={productData.imageURL} />
+            <ImageCarousel images={productData.imageURL} />
           </div>
           <div class="modalInfoColumn">
             <div class="modalCloseButton" onClick={this.props.closeModal}>
@@ -71,7 +70,7 @@ class QuickView extends React.Component {
             </div>
             <div class="modalSizeSection">
               <div class="modalSizeText">
-                Size: <span>128GB</span>
+                Size: <span>128 GB</span>
               </div>
               <div class="modalSizeSelect">
                 <div id="modalSizeOption1" class="modalSizeOption">
@@ -103,7 +102,21 @@ class QuickView extends React.Component {
               <div>Help us improve this page</div>
             </div>
           </div>
-          <div class="modalProductDetails">. </div>
+          <div class="modalProductDetails">
+            <p>
+              iPad. Like a computer.
+              <br />
+              <br />
+              Unlike any computer. Create, learn, work, and play like never before. An immersive
+              9.7-inch Multi-Touch Retina display.1 A10 Fusion chip with the power and capability
+              you'd expect from a computer. Now supports Apple Pencil.2 8MP camera. FaceTime HD
+              camera. Touch ID and Apple Pay.3 Wi-Fi and LTE.4 All-day battery life.5 Over a million
+              apps available on the App Store, including augmented reality experiences. A thin,
+              durable, aluminum design that weighs just a pound. And iOS 11 makes iPad more
+              powerful, personal, and intelligent, so you can do more than ever before. iPad.
+              There's nothing else quite like it.
+            </p>
+          </div>
         </div>
       </Modal>
     );
