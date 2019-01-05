@@ -8,15 +8,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    this.currURL = window.location.pathname.split('/')[1] || 1;
     this.state = {
-      currProduct: {
-        productID: 0,
-        name: 'Apple iPad 9.7" Wi-Fi Only (2018 Model, 6th Generation)',
-        price: '499.99',
-        imageURL:
-          'https://target.scene7.com/is/image/Target/GUEST_358cafbc-644b-46cd-a0e3-66b8a6763a75?wid=325&hei=325&qlt=80&fmt=webp',
-        categoryName: 'appleTablets',
-      },
+      currProduct: {},
       accessories: [],
       relatedItems: [],
       viewHistory: false,
@@ -28,59 +22,35 @@ class App extends React.Component {
     this.shuffleRelatedItems = this.shuffleRelatedItems.bind(this);
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
     this.getViewHistory = this.getViewHistory.bind(this);
-    this.getRelatedItems = this.getRelatedItems.bind(this);
+    this.getViewRelatedItems = this.getViewRelatedItems.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.setCurrQuickView = this.setCurrQuickView.bind(this);
   }
 
   componentDidMount() {
-    this.getInitialAccessories();
-    this.getInitialRelatedItems();
+    this.getCurrProduct();
+    this.getAccessories();
+    this.getRelatedItems();
     this.getPastItems();
   }
 
-  getInitialAccessories() {
+  getCurrProduct() {
     axios
-      .get('/items/accessories/ipad')
-      .then(results => {
+      .get(`http://localhost:9000/currentProduct/${this.currURL}`)
+      .then(result => {
         this.setState({
-          accessories: results.data,
+          currProduct: {
+            productID: result.data.id,
+            name: result.data.name,
+            price: result.data.price,
+            imageURL: result.data.imageURL,
+            categoryName: result.data.categoryName,
+          },
         });
       })
       .catch(err => {
-        console.log("there was an error with currProduct's accessories get request: ", err);
-      });
-  }
-
-  getInitialRelatedItems() {
-    axios
-      .get('/items/relatedItems/ipad')
-      .then(results => {
-        console.log('related items', results);
-        this.setState({
-          relatedItems: this.shuffleRelatedItems(results.data),
-        });
-      })
-      .catch(err => {
-        console.log("there was an error with the currProduct's related items get request: ", err);
-      });
-  }
-
-  getPastItems() {
-    axios
-      .get('items/savedProduct')
-      .then(results => {
-        if (results.data.length > 12) {
-          results.data = results.data.slice(-12);
-        }
-        let reversedResults = results.data.reverse();
-        this.setState({
-          pastItems: reversedResults,
-        });
-      })
-      .catch(err => {
-        console.log('there was an error with the pastItems get request: ', err);
+        console.log('there was an error with currProduct get request: ', err);
       });
   }
 
@@ -100,6 +70,50 @@ class App extends React.Component {
       })
       .catch(err => {
         console.log(err);
+      });
+  }
+
+  getPastItems() {
+    axios
+      .get('items/savedViewHistory')
+      .then(results => {
+        if (results.data.length > 12) {
+          results.data = results.data.slice(-12);
+        }
+        let reversedResults = results.data.reverse();
+        this.setState({
+          pastItems: reversedResults,
+        });
+      })
+      .catch(err => {
+        console.log('there was an error with the pastItems get request: ', err);
+      });
+  }
+
+  getAccessories() {
+    axios
+      .get(`http://localhost:9000/items/${this.currURL}`)
+      .then(results => {
+        this.setState({
+          accessories: results.data,
+        });
+      })
+      .catch(err => {
+        console.log("there was an error with currProduct's accessories get request: ", err);
+      });
+  }
+
+  getRelatedItems() {
+    axios
+      .get(`http://localhost:9000/relatedItems/${this.currURL}`)
+      .then(results => {
+        console.log('related items', results);
+        this.setState({
+          relatedItems: this.shuffleRelatedItems(results.data),
+        });
+      })
+      .catch(err => {
+        console.log("there was an error with the currProduct's related items get request: ", err);
       });
   }
 
@@ -174,7 +188,7 @@ class App extends React.Component {
     });
   }
 
-  getRelatedItems() {
+  getViewRelatedItems() {
     this.setState({
       viewHistory: false,
     });
@@ -236,7 +250,7 @@ class App extends React.Component {
               <b class="bigHeader">Recommended</b>
             </div>
             <div id="recViewOptions">
-              <span class="choice" onClick={this.getRelatedItems}>
+              <span class="choice" onClick={this.getViewRelatedItems}>
                 Other recommendations
               </span>
               <span class="choice" onClick={this.getViewHistory}>

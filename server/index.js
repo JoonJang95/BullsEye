@@ -11,35 +11,47 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// app.use(express.static(path.join(__dirname, '../public')));
-app.use('/', express.static('./public/'));
-app.use(/\/\d+/, express.static('./public/'));
+app.use(/(\/\d+)/, express.static(path.join(__dirname, '../public')));
 /* Request Handling */
 
-// Get initial current product accessories
-app.get('/items/accessories/ipad', (req, res) => {
-  db.Accessories.findAll({
-    where: {
-      categoryName: 'appleTablets',
-    },
-  })
-    .then((results) => {
-      res.status(200).json(results);
+// Get current Product
+app.get('/currentProduct/:id', (req, res) => {
+  db.Products.findByPk(req.params.id)
+    .then((product) => {
+      res.status(200).json(product);
     })
     .catch((error) => {
-      console.log('There was an error getting accessories from the DB: ', error);
+      console.log('There was an error getting curr Product from the DB: ', error);
       res.sendStatus(404);
     });
 });
 
-// Get initial current product related Items
-app.get('/items/relatedItems/ipad', (req, res) => {
+// Get current product accessories
+app.get('/items/:id', (req, res) => {
+  db.Products.findByPk(req.params.id).then((product) => {
+    db.Accessories.findAll({
+      where: {
+        categoryName: product.dataValues.categoryName,
+      },
+    })
+      .then((results) => {
+        res.status(200).json(results);
+      })
+      .catch((error) => {
+        console.log('There was an error getting accessories from the DB: ', error);
+        res.sendStatus(404);
+      });
+  });
+});
+
+// Get current product related Items
+app.get('/relatedItems/:id', (req, res) => {
   db.Products.findAll()
     .then((products) => {
       const appleProducts = products.slice(0, 6);
       const nonAppleProducts = products.slice(6, 12);
       const randomProducts = products.slice(12);
-
+      console.log('PRODUCTSsssss', appleProducts);
       res.status(200).json({
         appleProducts,
         nonAppleProducts,
@@ -86,7 +98,7 @@ app.get('/items/changeProduct/:categoryName', (req, res) => {
 
 // Get past viewed items from db
 
-app.get('/items/savedProduct', (req, res) => {
+app.get('/items/savedViewHistory', (req, res) => {
   db.ViewHistory.findAll()
     .then((results) => {
       res.status(200).json(results);
@@ -122,7 +134,7 @@ app.post('/items/saveProduct', (req, res) => {
     });
 });
 
-const port = 3000;
+const port = 9000; // Change Me for Proxy!!
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

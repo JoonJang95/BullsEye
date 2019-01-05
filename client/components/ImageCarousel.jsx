@@ -20,8 +20,11 @@ class SimpleSlider extends React.Component {
 
     return (
       <div class="sliderWrapper">
-        <Slider {...mainSettings}>
-          <div>
+        {/* <Slider {...mainSettings}> */}
+        <div>
+          <img src={this.props.images} />
+        </div>
+        {/* <div>
             <img src={this.props.images} />
           </div>
           <div>
@@ -36,10 +39,7 @@ class SimpleSlider extends React.Component {
           <div>
             <img src={this.props.images} />
           </div>
-          <div>
-            <img src={this.props.images} />
-          </div>
-        </Slider>
+        </Slider> */}
       </div>
     );
   }
