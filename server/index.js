@@ -9,9 +9,9 @@ const db = require('../db/index.js');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static(path.join(__dirname, '../public')));
-// app.use('/', express.static('./public/'));
-// app.use(/\/\d+\//, express.static('./public/'));
+// app.use(express.static(path.join(__dirname, '../public')));
+app.use('/', express.static('./public/'));
+app.use(/\/\d+/, express.static('./public/'));
 /* Request Handling */
 
 // Get initial current product accessories

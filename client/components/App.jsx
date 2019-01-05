@@ -218,6 +218,7 @@ class App extends React.Component {
       <React.Fragment>
         <div id="MockData">
           <h1>Current Product</h1>
+          <p>This section is an example</p>
           <div id="MockImageData">
             <img src={this.state.currProduct.imageURL} />
           </div>

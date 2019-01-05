@@ -98,11 +98,7 @@ li {
 }
 
 #relatedItemsList {
-  padding-bottom: 17px;
-  overflow-x: hidden;
-}
-
-#recommendationsProducts:hover > #relatedItemsList {
+  padding-bottom: 20px;
   overflow-x: auto;
 }
 
