@@ -5,7 +5,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const {
-  db, ViewHistory, Products, Categories, Accessories,
+  db, ViewHistory, Products, Accessories,
 } = require('../db/index.js');
 
 // Middleware
@@ -29,60 +29,61 @@ app.get('/currentProduct/:id', (req, res) => {
 });
 
 // Get current product accessories
-app.get('/items/:id', (req, res) => {
-  Products.findByPk(req.params.id).then((product) => {
-    Accessories.findAll({
-      where: {
-        categoryName: product.dataValues.categoryName,
-      },
+app.get('/items/:categoryName', (req, res) => {
+  Accessories.findAll({
+    where: {
+      categoryName: req.params.categoryName,
+    },
+    order: db.literal('rand()'),
+    limit: 5,
+  })
+    .then((results) => {
+      res.status(200).json(results);
     })
-      .then((results) => {
-        res.status(200).json(results);
-      })
-      .catch((error) => {
-        console.log('There was an error getting accessories from the DB: ', error);
-        res.sendStatus(404);
-      });
-  });
+    .catch((error) => {
+      console.log('There was an error getting accessories from the DB: ', error);
+      res.sendStatus(404);
+    });
 });
 
 // Get current product related Items
-app.get('/relatedItems/:id', (req, res) => {
-  console.log(req.params.id);
-  Products.findByPk(req.params.id).then((product) => {
-    Products.findAll({
-      where: {
-        categoryName: product.dataValues.categoryName,
-        [db.Op.not]: {
-          id: req.params.id,
-        },
+app.get('/relatedItems/:categoryName', (req, res) => {
+  Products.findAll({
+    where: {
+      categoryName: req.params.categoryName,
+      [db.Op.not]: {
+        id: req.params.id,
       },
-      order: db.literal('rand()'),
-    })
-      .then((relatedItems) => {
-        Products.findAll({
-          where: {
-            [db.Op.not]: { categoryName: product.dataValues.categoryName },
-          },
-          order: db.literal('rand()'),
-          limit: 9,
-        }).then((otherRelatedItems) => {
-          res.status(200).json([...relatedItems, ...otherRelatedItems]);
-        });
-      })
-      .catch((error) => {
-        console.log('There was an error getting products from the DB: ', error);
-        res.sendStatus(404);
+    },
+    order: db.literal('rand()'),
+    limit: 6,
+  })
+    .then((relatedItems) => {
+      Products.findAll({
+        where: {
+          [db.Op.not]: { categoryName: req.params.categoryName },
+        },
+        order: db.literal('rand()'),
+        limit: 8,
+      }).then((otherRelatedItems) => {
+        res.status(200).json([...relatedItems, ...otherRelatedItems]);
       });
-  });
+    })
+    .catch((error) => {
+      console.log('There was an error getting products from the DB: ', error);
+      res.sendStatus(404);
+    });
 });
 
 // Get past viewed items from db
 
-app.get('/items/savedViewHistory', (req, res) => {
-  ViewHistory.findAll()
-    .then((results) => {
-      res.status(200).json(results);
+app.get('/ViewHistory', (req, res) => {
+  ViewHistory.findAll({
+    limit: 12,
+    order: [['updatedAt', 'DESC']],
+  })
+    .then((pastItems) => {
+      res.status(200).json(pastItems);
     })
     .catch((error) => {
       console.log('There was an error getting pastItems from the DB: ', error);
@@ -92,8 +93,7 @@ app.get('/items/savedViewHistory', (req, res) => {
 
 // save currentProduct to viewHistory db
 
-app.post('/items/saveProduct/:id', (req, res) => {
-  
+app.post('/SaveProduct', (req, res) => {
   ViewHistory.findOrCreate({
     where: {
       id: req.body.productID,
@@ -107,7 +107,7 @@ app.post('/items/saveProduct/:id', (req, res) => {
     },
   })
     .spread(() => {
-      res.status(201).json(req.body);
+      res.sendStatus(201);
     })
     .catch((error) => {
       console.log('There was an error posting pastItems to the DB: ', error);

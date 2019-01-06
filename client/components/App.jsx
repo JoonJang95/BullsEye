@@ -19,7 +19,6 @@ class App extends React.Component {
       currQuickView: {},
     };
 
-    this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
     this.getViewHistory = this.getViewHistory.bind(this);
     this.getViewRelatedItems = this.getViewRelatedItems.bind(this);
     this.openModal = this.openModal.bind(this);
@@ -29,9 +28,6 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getCurrProduct();
-    this.getAccessories();
-    this.getRelatedItems();
-    this.getPastItems();
   }
 
   getCurrProduct() {
@@ -50,6 +46,9 @@ class App extends React.Component {
       })
       .then(() => {
         this.saveCurrProduct(this.state.currProduct);
+        this.getAccessories();
+        this.getRelatedItems();
+        this.getPastItems();
       })
       .catch(err => {
         console.log('there was an error with currProduct get request: ', err);
@@ -58,29 +57,24 @@ class App extends React.Component {
 
   saveCurrProduct({ productID, name, price, imageURL, categoryName }) {
     axios
-      .post('items/saveProduct', {
+      .post('http://localhost:9000/SaveProduct', {
         productID: productID,
         name: name,
         price: price,
         imageURL: imageURL,
         categoryName: categoryName,
       })
-      .then(response => {
-        this.getPastItems();
-        console.log(response);
-      })
       .catch(err => {
-        console.log(err);
+        console.log('there was an error with the save curr Product post request: ', err);
       });
   }
 
   getPastItems() {
     axios
-      .get('items/savedViewHistory')
+      .get('http://localhost:9000/ViewHistory')
       .then(results => {
-        console.log(results);
         this.setState({
-          pastItems: results,
+          pastItems: results.data,
         });
       })
       .catch(err => {
@@ -90,7 +84,7 @@ class App extends React.Component {
 
   getAccessories() {
     axios
-      .get(`http://localhost:9000/items/${this.currURL}`)
+      .get(`http://localhost:9000/items/${this.state.currProduct.categoryName}`)
       .then(results => {
         this.setState({
           accessories: results.data,
@@ -103,48 +97,14 @@ class App extends React.Component {
 
   getRelatedItems() {
     axios
-      .get(`http://localhost:9000/relatedItems/${this.currURL}`)
+      .get(`http://localhost:9000/relatedItems/${this.state.currProduct.categoryName}`)
       .then(results => {
-        console.log('related items', results);
         this.setState({
           relatedItems: results.data,
         });
       })
       .catch(err => {
         console.log("there was an error with the currProduct's related items get request: ", err);
-      });
-  }
-
-  changeCurrentProduct(e) {
-    let clickedURL = e.target.dataset.imageurl;
-    let categoryNameData = e.target.dataset.categoryname;
-    let productID = e.target.dataset.productid;
-    let name = e.target.dataset.name;
-    let price = e.target.dataset.price;
-
-    axios
-      .get(`/items/changeProduct/${e.target.dataset.categoryname}`)
-      .then(results => {
-        this.setState({
-          currProduct: {
-            productID: productID,
-            name: name,
-            price: price,
-            imageURL: clickedURL,
-            categoryName: categoryNameData,
-          },
-          accessories: results.data.accessories,
-          relatedItems: this.shuffleRelatedItems(results.data),
-        });
-
-        this.saveCurrProduct(this.state.currProduct);
-        this.getRelatedItems();
-      })
-      .catch(err => {
-        console.log(
-          "there was an error with the changeProduct's accessory & related items get request: ",
-          err,
-        );
       });
   }
 
