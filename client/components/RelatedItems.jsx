@@ -47,28 +47,28 @@ class RelatedItems extends React.Component {
             let AppleProduct = () => {
               return (
                 <div class="productName appleName">
-                  Apple<sup>®</sup>{' '}
-                  {item.name.length > 20 ? `${item.name.slice(5, 23)}...` : item.name.slice(5)}
+                  <a href={`/${item.id}`}>
+                    Apple<sup>®</sup>{' '}
+                    {item.name.length > 20 ? `${item.name.slice(5, 23)}...` : item.name.slice(5)}
+                  </a>
                 </div>
               );
             };
 
             let NonAppleProduct = () => {
-              return <div class="productName nonAppleName">{`${item.name.slice(0, 23)}...`}</div>;
+              return (
+                <div class="productName nonAppleName">
+                  <a href={`/${item.id}`}>{`${item.name.slice(0, 23)}...`}</a>
+                </div>
+              );
             };
 
             return (
               <li>
                 <div class="imageRows">
-                  <img
-                    src={item.imageURL}
-                    data-imageurl={item.imageURL}
-                    data-categoryname={item.categoryName}
-                    data-price={item.price}
-                    data-name={item.name}
-                    data-productid={item.id}
-                    onClick={this.props.func}
-                  />
+                  <a href={`/${item.id}`}>
+                    <img src={item.imageURL} />
+                  </a>
 
                   <div
                     class="quickView"
@@ -82,26 +82,10 @@ class RelatedItems extends React.Component {
                     Quick Shop
                   </div>
                   <div class="whiteBox">.</div>
-                  <div
-                    class="productInformation"
-                    data-imageurl={item.imageURL}
-                    data-categoryname={item.categoryName}
-                    data-price={item.price}
-                    data-name={item.name}
-                    data-productid={item.id}
-                    onClick={this.props.func}
-                  >
-                    <b
-                      class="itemPrice"
-                      data-imageurl={item.imageURL}
-                      data-categoryname={item.categoryName}
-                      data-price={item.price}
-                      data-name={item.name}
-                      data-productid={item.id}
-                      onClick={this.props.func}
-                    >
-                      ${item.price}
-                    </b>
+                  <div class="productInformation">
+                    <a href={`/${item.id}`}>
+                      <b class="itemPrice">${item.price}</b>
+                    </a>
                     {item.categoryName === 'appleTablets' ? <AppleProduct /> : <NonAppleProduct />}
                   </div>
                 </div>

@@ -26,7 +26,7 @@
 .accessoryHead {
   text-align: center;
   margin-top: 25px;
-  margin-bottom: 13px;
+  margin-bottom: 10px;
 }
 
 .accessoriesPictures {
@@ -71,6 +71,7 @@ li {
 
 #recViewOptions {
   text-align: center;
+  margin-top: 5px;
 }
 
 .choice {

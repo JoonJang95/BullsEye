@@ -47,7 +47,7 @@ app.get('/items/:categoryName', (req, res) => {
 });
 
 // Get current product related Items
-app.get('/relatedItems/:categoryName', (req, res) => {
+app.get('/relatedItems/:categoryName/:id', (req, res) => {
   Products.findAll({
     where: {
       categoryName: req.params.categoryName,
@@ -66,6 +66,8 @@ app.get('/relatedItems/:categoryName', (req, res) => {
         order: db.literal('rand()'),
         limit: 8,
       }).then((otherRelatedItems) => {
+        console.log('heeeyy', relatedItems);
+        console.log(otherRelatedItems);
         res.status(200).json([...relatedItems, ...otherRelatedItems]);
       });
     })

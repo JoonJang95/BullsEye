@@ -97,8 +97,11 @@ class App extends React.Component {
 
   getRelatedItems() {
     axios
-      .get(`http://localhost:9000/relatedItems/${this.state.currProduct.categoryName}`)
+      .get(
+        `http://localhost:9000/relatedItems/${this.state.currProduct.categoryName}/${this.currURL}`,
+      )
       .then(results => {
+        console.log('araretae', results);
         this.setState({
           relatedItems: results.data,
         });
@@ -155,49 +158,39 @@ class App extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <div id="MockData">
-          <h1>Current Product</h1>
-          <p>This section is an example</p>
-          <div id="MockImageData">
-            <img src={this.state.currProduct.imageURL} />
+      <div id="wrapper">
+        <div class="accessories">
+          <div class="accessoryHead">
+            {' '}
+            <b class="bigHeader">Consider these accessories</b>{' '}
           </div>
+          <Accessories accessories={this.state.accessories} />
         </div>
-        <div id="wrapper">
-          <div class="accessories">
-            <div class="accessoryHead">
-              {' '}
-              <b class="bigHeader">Consider these accessories</b>{' '}
-            </div>
-            <Accessories accessories={this.state.accessories} />
+        <div class="relatedItems">
+          <div class="relatedItemsHead">
+            <b class="bigHeader">Recommended</b>
           </div>
-          <div class="relatedItems">
-            <div class="relatedItemsHead">
-              <b class="bigHeader">Recommended</b>
-            </div>
-            <div id="recViewOptions">
-              <span class="choice" onClick={this.getViewRelatedItems}>
-                Other recommendations
-              </span>
-              <span class="choice" onClick={this.getViewHistory}>
-                Recently viewed items
-              </span>
-            </div>
-            <QuickView
-              data={this.state.currQuickView}
-              modal={this.state.visible}
-              closeModal={this.closeModal}
-            />
-            <RelatedItems
-              relatedProducts={
-                this.state.viewHistory ? this.state.pastItems : this.state.relatedItems
-              }
-              func={this.changeCurrentProduct}
-              setQuickView={this.setCurrQuickView}
-            />
+          <div id="recViewOptions">
+            <span class="choice" onClick={this.getViewRelatedItems}>
+              Other recommendations
+            </span>
+            <span class="choice" onClick={this.getViewHistory}>
+              Recently viewed items
+            </span>
           </div>
+          <QuickView
+            data={this.state.currQuickView}
+            modal={this.state.visible}
+            closeModal={this.closeModal}
+          />
+          <RelatedItems
+            relatedProducts={
+              this.state.viewHistory ? this.state.pastItems : this.state.relatedItems
+            }
+            setQuickView={this.setCurrQuickView}
+          />
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }
