@@ -19,7 +19,6 @@ class App extends React.Component {
       currQuickView: {},
     };
 
-    this.shuffleRelatedItems = this.shuffleRelatedItems.bind(this);
     this.changeCurrentProduct = this.changeCurrentProduct.bind(this);
     this.getViewHistory = this.getViewHistory.bind(this);
     this.getViewRelatedItems = this.getViewRelatedItems.bind(this);
@@ -49,13 +48,15 @@ class App extends React.Component {
           },
         });
       })
+      .then(() => {
+        this.saveCurrProduct(this.state.currProduct);
+      })
       .catch(err => {
         console.log('there was an error with currProduct get request: ', err);
       });
   }
 
   saveCurrProduct({ productID, name, price, imageURL, categoryName }) {
-    console.log(productID, name, price);
     axios
       .post('items/saveProduct', {
         productID: productID,
@@ -77,12 +78,9 @@ class App extends React.Component {
     axios
       .get('items/savedViewHistory')
       .then(results => {
-        if (results.data.length > 12) {
-          results.data = results.data.slice(-12);
-        }
-        let reversedResults = results.data.reverse();
+        console.log(results);
         this.setState({
-          pastItems: reversedResults,
+          pastItems: results,
         });
       })
       .catch(err => {
@@ -109,7 +107,7 @@ class App extends React.Component {
       .then(results => {
         console.log('related items', results);
         this.setState({
-          relatedItems: this.shuffleRelatedItems(results.data),
+          relatedItems: results.data,
         });
       })
       .catch(err => {
@@ -123,10 +121,6 @@ class App extends React.Component {
     let productID = e.target.dataset.productid;
     let name = e.target.dataset.name;
     let price = e.target.dataset.price;
-
-    console.log(e.target);
-
-    console.log('heyyyy', e.target.dataset.price);
 
     axios
       .get(`/items/changeProduct/${e.target.dataset.categoryname}`)
@@ -152,34 +146,6 @@ class App extends React.Component {
           err,
         );
       });
-  }
-
-  shuffleRelatedItems(data) {
-    let productsMax = Math.floor(Math.random() * 4) + 3;
-    let productsMin = Math.floor(Math.random() * 3);
-    let randomProductsNum = Math.floor(Math.random() * 80);
-    let relatedItemsList = [];
-
-    if (this.state.currProduct.categoryName === 'appleTablets') {
-      relatedItemsList = [
-        ...data.appleProducts.slice(productsMin, productsMax),
-        ...data.nonAppleProducts.slice(productsMin, productsMax),
-        ...data.randomProducts.slice(randomProductsNum),
-      ];
-    } else if (this.state.currProduct.categoryName === 'non_Apple_Tablets') {
-      relatedItemsList = [
-        ...data.nonAppleProducts.slice(productsMin, productsMax),
-        ...data.appleProducts.slice(productsMin, productsMax),
-        ...data.randomProducts.slice(randomProductsNum),
-      ];
-    } else {
-      relatedItemsList = [
-        ...data.randomProducts.slice(randomProductsNum, randomProductsNum + 8),
-        ...data.appleProducts.slice(0, productsMax),
-        ...data.nonAppleProducts.slice(productsMin, productsMax),
-      ];
-    }
-    return relatedItemsList.length > 12 ? relatedItemsList.slice(0, 12) : relatedItemsList;
   }
 
   getViewHistory() {
