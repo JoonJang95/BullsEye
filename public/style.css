@@ -11,7 +11,7 @@
   border-top-color: #dddddd;
   display: grid;
   grid-template-rows: 245px 300px;
-  width: 882px;
+  width: 1015px;
   margin: 0px auto;
   text-align: center;
 }
@@ -26,7 +26,7 @@
 .accessoryHead {
   text-align: center;
   margin-top: 25px;
-  margin-bottom: 13px;
+  margin-bottom: 10px;
 }
 
 .accessoriesPictures {
@@ -42,8 +42,8 @@ sup {
 
 /* Product images (both accessories & related)*/
 img {
-  height: 115px;
-  width: 115px;
+  height: 130px;
+  width: 130px;
 }
 
 ul {
@@ -66,17 +66,18 @@ li {
 /* Related items component */
 .relatedItemsHead {
   text-align: center;
-  margin-top: 0px;
+  margin-top: 15px;
 }
 
 #recViewOptions {
   text-align: center;
+  margin-top: 5px;
 }
 
 .choice {
   font-family: Helvetica;
   margin-right: 17px;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .choice:hover {
@@ -89,17 +90,15 @@ li {
   border-top-color: #858181;
   border-top-style: solid;
   border-top-width: thin;
-  border-bottom-style: solid;
-  border-bottom-width: thin;
-  border-bottom-color: #dddddd;
   margin-top: 5px;
+  height: 210px;
   overflow: hidden;
   display: flex;
 }
 
 #relatedItemsList {
-  padding-bottom: 20px;
-  overflow-x: auto;
+  padding-bottom: 30px;
+  overflow: auto;
 }
 
 .productName {
@@ -111,6 +110,10 @@ li {
   height: 157px;
   width: 140px;
   margin-right: -7px;
+}
+
+.productInformation {
+  margin-top: 5px;
 }
 
 .imageRows:hover,
@@ -192,7 +195,7 @@ b,
   color: rgb(51, 51, 51);
   font-weight: bold;
   line-height: 1.25;
-  font-size: 15.5px;
+  font-size: 16.5px;
   margin: 0px 0px 10px;
 }
 
@@ -288,6 +291,7 @@ button:focus {
   font-family: Helvetica, sans-serif;
   font-weight: light;
   margin-top: 7.25px;
+  cursor: pointer;
 }
 
 .modalCarousel {
@@ -336,7 +340,7 @@ button:focus {
   text-align: center;
   position: relative;
   right: -185px;
-  top: -72px;
+  top: -70px;
 }
 
 .modalCloseButton:hover {
