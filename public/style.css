@@ -4,6 +4,11 @@
   place-items: center;
 }
 
+a {
+  color: black;
+  text-decoration: none; /* no underline */
+}
+
 /* Outer wrapper */
 #wrapper {
   border-top-style: solid;
@@ -122,8 +127,12 @@ li {
 }
 
 .imageRows:hover > .productInformation > .appleName,
-.imageRows:hover > .productInformation > .itemPrice {
+.imageRows:hover > .productInformation > .priceLink > .itemPrice {
   border-bottom: 0.3px solid;
+}
+
+.itemPrice:hover {
+  text-decoration: underline;
 }
 
 .imageRows:hover > .productInformation > .nonAppleName {
@@ -594,8 +603,8 @@ button:focus {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url(https://www.brandeps.com/icon-download/S/Sort-02.svg) 95% /
-    40% no-repeat #eee;
+  background: url(https://image.flaticon.com/icons/svg/60/60995.svg) 87% / 25%
+    no-repeat #eee;
 }
 
 .modalSelectOptions:focus {
