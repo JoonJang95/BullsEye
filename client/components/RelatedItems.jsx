@@ -83,7 +83,7 @@ class RelatedItems extends React.Component {
                   </div>
                   <div class="whiteBox">.</div>
                   <div class="productInformation">
-                    <a href={`/${item.id}`}>
+                    <a class="priceLink" href={`/${item.id}`}>
                       <b class="itemPrice">${item.price}</b>
                     </a>
                     {item.categoryName === 'appleTablets' ? <AppleProduct /> : <NonAppleProduct />}
