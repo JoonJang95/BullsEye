@@ -40,7 +40,7 @@ class QuickView extends React.Component {
             <div class="modalPrice">${productData.price}</div>
             <div class="modalStarRating">
               <StarRating />
-              <span class="modalRatingText">1786 | 91 Questions</span>
+              <div class="modalRatingText">1786 | 91 Questions</div>
             </div>
             <div class="modalWarrantyText">
               <label class="modalWarrantyDescription">
