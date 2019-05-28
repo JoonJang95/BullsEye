@@ -101,7 +101,6 @@ class App extends React.Component {
         `http://localhost:9000/relatedItems/${this.state.currProduct.categoryName}/${this.currURL}`,
       )
       .then(results => {
-        console.log('araretae', results);
         this.setState({
           relatedItems: results.data,
         });
