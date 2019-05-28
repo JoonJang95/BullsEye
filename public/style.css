@@ -1,14 +1,3 @@
-/* Mock Data */
-#MockData {
-  display: grid;
-  place-items: center;
-}
-
-a {
-  color: black;
-  text-decoration: none; /* no underline */
-}
-
 /* Outer wrapper */
 #wrapper {
   border-top-style: solid;
@@ -16,9 +5,10 @@ a {
   border-top-color: #dddddd;
   display: grid;
   grid-template-rows: 245px 300px;
-  width: 1015px;
+  width: 1025px;
   margin: 0px auto;
   text-align: center;
+  margin-top: 90px;
 }
 
 .accessories,
@@ -47,8 +37,8 @@ sup {
 
 /* Product images (both accessories & related)*/
 img {
-  height: 130px;
-  width: 130px;
+  height: 125px;
+  width: 125px;
 }
 
 ul {
@@ -77,6 +67,7 @@ li {
 #recViewOptions {
   text-align: center;
   margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .choice {
@@ -127,12 +118,13 @@ li {
 }
 
 .imageRows:hover > .productInformation > .appleName,
-.imageRows:hover > .productInformation > .priceLink > .itemPrice {
+.imageRows:hover > .productInformation > .relatedImageLink > .itemPrice {
   border-bottom: 0.3px solid;
 }
 
-.itemPrice:hover {
-  text-decoration: underline;
+.relatedImageLink {
+  color: black;
+  text-decoration: none; /* no underline */
 }
 
 .imageRows:hover > .productInformation > .nonAppleName {
@@ -223,6 +215,17 @@ b,
 
 .scrollDiv2 {
   margin-left: 3px;
+}
+
+.scrollArrow {
+  position: relative;
+  top: -1px;
+  left: -1px;
+}
+
+.scrollArrowRight {
+  position: relative;
+  left: -1.5px;
 }
 
 .scrollButton {
@@ -349,7 +352,7 @@ button:focus {
   text-align: center;
   position: relative;
   right: -185px;
-  top: -70px;
+  top: -68px;
 }
 
 .modalCloseButton:hover {
@@ -365,12 +368,18 @@ button:focus {
   left: 15px;
 }
 
+
 .modalStarRating {
   position: relative;
   top: -57px;
   left: 14px;
   overflow: auto;
-  display: inline-block;
+  display: flex;
+}
+
+.quickStarDiv {
+  position: relative;
+  top: 1px;
 }
 
 .modalRatingText {
@@ -379,9 +388,9 @@ button:focus {
   font-weight: lighter;
   margin-left: 5px;
   height: 25px;
-  position: relative;
-  top: -1.65px;
   letter-spacing: 0.3px;
+  display: block;
+  line-height: 22px;
 }
 
 .modalRatingText:hover,

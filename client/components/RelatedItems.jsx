@@ -39,7 +39,7 @@ class RelatedItems extends React.Component {
           onMouseLeave={this.removeScrollButtons}
         >
           <button class="scrollButton" onClick={this.clickHandlerLeft}>
-            &#8249;
+            <div class="scrollArrow scrollArrowRight">&#8249;</div>
           </button>
         </div>
         <ul id="relatedItemsList">
@@ -47,7 +47,7 @@ class RelatedItems extends React.Component {
             let AppleProduct = () => {
               return (
                 <div class="productName appleName">
-                  <a href={`/${item.id}`}>
+                  <a class="relatedImageLink" href={`/${item.id}`}>
                     Apple<sup>®</sup>{' '}
                     {item.name.length > 20 ? `${item.name.slice(5, 23)}...` : item.name.slice(5)}
                   </a>
@@ -58,7 +58,10 @@ class RelatedItems extends React.Component {
             let NonAppleProduct = () => {
               return (
                 <div class="productName nonAppleName">
-                  <a href={`/${item.id}`}>{`${item.name.slice(0, 23)}...`}</a>
+                  <a class="relatedImageLink" href={`/${item.id}`}>{`${item.name.slice(
+                    0,
+                    23,
+                  )}...`}</a>
                 </div>
               );
             };
@@ -66,7 +69,7 @@ class RelatedItems extends React.Component {
             return (
               <li>
                 <div class="imageRows">
-                  <a href={`/${item.id}`}>
+                  <a class="relatedImageLink" href={`/${item.id}`}>
                     <img src={item.imageURL} />
                   </a>
 
@@ -83,7 +86,7 @@ class RelatedItems extends React.Component {
                   </div>
                   <div class="whiteBox">.</div>
                   <div class="productInformation">
-                    <a class="priceLink" href={`/${item.id}`}>
+                    <a class="relatedImageLink" href={`/${item.id}`}>
                       <b class="itemPrice">${item.price}</b>
                     </a>
                     {item.categoryName === 'appleTablets' ? <AppleProduct /> : <NonAppleProduct />}
@@ -99,7 +102,7 @@ class RelatedItems extends React.Component {
           onMouseLeave={this.removeScrollButtons}
         >
           <button class="scrollButton scrollRight" onClick={this.clickHandlerRight}>
-            &#8250;
+            <div class="scrollArrow" >&#8250;</div>
           </button>
         </div>
         {/* <div id="circles">

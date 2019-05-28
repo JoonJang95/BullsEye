@@ -13,7 +13,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(/(\/\d+)/, express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../public')))
+// app.use(/(\/\d+)/, express.static(path.join(__dirname, '../public')));
 /* Request Handling */
 
 // Get current Product
@@ -117,7 +118,7 @@ app.post('/SaveProduct', (req, res) => {
     });
 });
 
-const port = 9000; // Change Me for Proxy!!
+const port = 3001; // Change Me for Proxy!!
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

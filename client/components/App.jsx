@@ -32,7 +32,7 @@ class App extends React.Component {
 
   getCurrProduct() {
     axios
-      .get(`http://localhost:9000/currentProduct/${this.currURL}`)
+      .get(`http://localhost:3001/currentProduct/${this.currURL}`)
       .then(result => {
         this.setState({
           currProduct: {
@@ -57,7 +57,7 @@ class App extends React.Component {
 
   saveCurrProduct({ productID, name, price, imageURL, categoryName }) {
     axios
-      .post('http://localhost:9000/SaveProduct', {
+      .post('http://localhost:3001/SaveProduct', {
         productID: productID,
         name: name,
         price: price,
@@ -71,7 +71,7 @@ class App extends React.Component {
 
   getPastItems() {
     axios
-      .get('http://localhost:9000/ViewHistory')
+      .get('http://localhost:3001/ViewHistory')
       .then(results => {
         this.setState({
           pastItems: results.data,
@@ -84,7 +84,7 @@ class App extends React.Component {
 
   getAccessories() {
     axios
-      .get(`http://localhost:9000/items/${this.state.currProduct.categoryName}`)
+      .get(`http://localhost:3001/items/${this.state.currProduct.categoryName}`)
       .then(results => {
         this.setState({
           accessories: results.data,
@@ -98,7 +98,7 @@ class App extends React.Component {
   getRelatedItems() {
     axios
       .get(
-        `http://localhost:9000/relatedItems/${this.state.currProduct.categoryName}/${this.currURL}`,
+        `http://localhost:3001/relatedItems/${this.state.currProduct.categoryName}/${this.currURL}`,
       )
       .then(results => {
         this.setState({
